@@ -16,6 +16,7 @@ class DbUser {
 }
 
 class DbPost {
+  final String title; // niepolomice
   final String uidOfImage; // from firebase storage
   final String uidOfUser; // from firebase auth
   final String description; // description of post
@@ -24,6 +25,7 @@ class DbPost {
   final List<String> downvotes; // uid of users
 
   DbPost({
+    required this.title,
     required this.uidOfImage,
     required this.uidOfUser,
     required this.description,
@@ -33,14 +35,31 @@ class DbPost {
   });
   // write constructor for class from firebase
   factory DbPost.fromFirestore(Map<String, dynamic> map) {
-    return DbPost(
-      uidOfImage: map['uidOfImage'],
-      uidOfUser: map['uidOfUser'],
-      description: map['description'],
-      city: map['city'],
-      upvotes: map['upvotes'],
-      downvotes: map['downvotes'],
-    );
+    var arrayU = map['upvotes'];
+    var arrayD = map['downvotes'];
+    var listU = arrayU.cast<String>();
+    var listD = arrayD.cast<String>();
+    try {
+      return DbPost(
+        title: map['title'],
+        uidOfImage: map['uidOfImage'],
+        uidOfUser: map['uidOfUser'],
+        description: map['description'],
+        city: map['city'],
+        upvotes: listU,
+        downvotes: listD,
+      );
+    } catch (_) {
+      return DbPost(
+        title: "error",
+        uidOfImage: "error",
+        uidOfUser: "error",
+        description: "error",
+        city: "error",
+        upvotes: [],
+        downvotes: [],
+      );
+    }
   }
   Map<String, dynamic> toMap() {
     return {

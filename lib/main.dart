@@ -43,8 +43,7 @@ void main() async {
       routes: {
         '/register': (context) => const Scaffold(body: Start()),
         '/login': (context) => const Scaffold(body: Login()),
-        '/home': (context) =>
-            const SafeArea(top: false, child: Scaffold(body: Home())),
+        '/home': (context) => const SafeArea(child: Scaffold(body: Home())),
       },
     ),
   ));

@@ -45,48 +45,19 @@ class ListHome extends StatelessWidget {
         SizedBox(
             height: height * (1 - 0.2),
             child: ListView.builder(
+              itemCount: Provider.of<MyProvider>(context).posts.length,
               itemBuilder: (context, index) {
                 return Container(
-                  height: height * 0.1,
                   child: Row(
                     children: [
-                      Container(
-                        width: height * 0.1,
-                        height: height * 0.1,
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(10)),
+                      Text(
+                        Provider.of<MyProvider>(context)
+                            .posts[index]
+                            .description,
+                        style: TextStyle(
+                            fontSize: mediaQuery.size.height * 0.05,
+                            fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Name",
-                            style: TextStyle(
-                                fontSize: mediaQuery.size.height * 0.03,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Description",
-                            style: TextStyle(
-                                fontSize: mediaQuery.size.height * 0.02,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      IconButton(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text("Not implemented yet"),
-                            ));
-                          },
-                          icon: const Icon(Icons.arrow_forward_ios))
                     ],
                   ),
                 );

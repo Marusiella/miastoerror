@@ -28,21 +28,26 @@ class MyProvider with ChangeNotifier {
       _isSignedIn = false;
     }
     () async {
-      // final prefs = await SharedPreferences.getInstance();
-      // _city = prefs.getString("city") ?? "";
-      var data = await db
-          .collection("users")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .get();
-      DbUser user = DbUser.fromFirestore(data.data()!);
-      if (user.city != "") {
-        _city = user.city;
-        // gettings posts
-        var data =
-            await db.collection("posts").where("city", isEqualTo: _city).get();
-        _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
-        // addPost("test", "test2", "");
-      }
+      try {
+        var data = await db
+            .collection("users")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get();
+        DbUser user = DbUser.fromFirestore(data.data()!);
+        if (user.city != "") {
+          _city = user.city;
+          notifyListeners();
+
+          // gettings posts
+          var data = await db
+              .collection("posts")
+              .where("city", isEqualTo: _city)
+              .get();
+          _posts =
+              data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+          // addPost("test", "test2", "");
+        }
+      } catch (_) {}
     }();
     notifyListeners();
   }
@@ -120,6 +125,7 @@ class MyProvider with ChangeNotifier {
 
   void addPost(String title, String description, String image) async {
     DbPost post = DbPost(
+      title: title,
       uidOfImage: image,
       city: _city,
       description: description,
