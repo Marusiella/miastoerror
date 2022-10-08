@@ -3,8 +3,22 @@ import 'package:provider/provider.dart';
 
 import 'provider.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      Provider.of<MyProvider>(context, listen: false).ifSignedIn(context);
+      print("init state");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

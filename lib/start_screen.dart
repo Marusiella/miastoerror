@@ -12,16 +12,6 @@ class Start extends StatefulWidget {
 
 class _StartState extends State<Start> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Future.delayed(Duration.zero, () {
-      Provider.of<MyProvider>(context, listen: false).ifSignedIn(context);
-      print("init state");
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(child: const Register());
   }
