@@ -6,8 +6,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:miastoerror/start_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
+import 'home_screen.dart';
+import 'login_screen.dart';
+import 'provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +29,17 @@ void main() async {
       print(e);
     }
   }
-  runApp(const MaterialApp(
-    home: Scaffold(
-      body: Start(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => MyProvider()),
+    ],
+    child: MaterialApp(
+      initialRoute: "/login",
+      routes: {
+        '/register': (context) => const Scaffold(body: Start()),
+        '/login': (context) => const Scaffold(body: Login()),
+        '/home': (context) => const Scaffold(body: Home()),
+      },
     ),
   ));
 }

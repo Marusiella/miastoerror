@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'provider.dart';
 
-class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +13,13 @@ class Register extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text("Register screen"),
-          Text("Already have an account?"),
+          Text("Login screen"),
+          Text("Don't have an account?"),
           TextButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/login');
+              Navigator.pushReplacementNamed(context, '/register');
             },
-            child: const Text("Login"),
+            child: const Text("Register"),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -52,9 +52,9 @@ class Register extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Provider.of<MyProvider>(context, listen: false)
-                        .singUp(context);
+                        .signIn(context);
                   },
-                  child: const Text("Sign up"),
+                  child: const Text("Sign in"),
                 ),
                 Text(Provider.of<MyProvider>(context).error)
               ],
