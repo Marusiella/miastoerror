@@ -14,7 +14,7 @@ class SelectCity extends StatelessWidget {
           TextButton(
               onPressed: () => Provider.of<MyProvider>(context, listen: false)
                   .logOut(context),
-              child: Text("Logout")),
+              child: const Text("Logout")),
           Column(
             children: city
                 .map((e) => TextButton(
@@ -24,6 +24,9 @@ class SelectCity extends StatelessWidget {
                     child: Text(upFirstLetter(e))))
                 .toList(),
           ),
+          TextButton(
+              onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+              child: const Text("Next")),
         ],
       ),
     );

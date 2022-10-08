@@ -1,19 +1,16 @@
 class DbUser {
   final String city; // niepolomice
-  final List<String> posts; // uid of users
 
-  DbUser({required this.city, required this.posts});
+  DbUser({required this.city});
 
   factory DbUser.fromFirestore(Map<String, dynamic> json) {
     return DbUser(
       city: json['city'],
-      posts: json['posts'],
     );
   }
   Map<String, dynamic> toMap() {
     return {
       'city': city,
-      'posts': posts,
     };
   }
 }

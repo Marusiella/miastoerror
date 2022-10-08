@@ -19,6 +19,7 @@ class MyProvider with ChangeNotifier {
 
   // on create
   MyProvider() {
+    print("provider created");
     if (FirebaseAuth.instance.currentUser != null) {
       _isSignedIn = true;
     } else {
@@ -32,10 +33,10 @@ class MyProvider with ChangeNotifier {
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
       DbUser user = DbUser.fromFirestore(data.data()!);
-      if (user.city != null) {
+      if (user.city != "") {
         _city = user.city;
       }
-    };
+    }();
     notifyListeners();
   }
   void ifSignedIn(BuildContext context) {
@@ -100,11 +101,26 @@ class MyProvider with ChangeNotifier {
 
   void setCity(String city) async {
     _city = city;
-    DbUser user = DbUser(city: city, posts: []);
+    DbUser user = DbUser(
+      city: city,
+    );
     db
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set(user.toMap());
     notifyListeners();
+  }
+
+  void addPost(String title, String description, String image,
+      String pathToImage) async {
+    DbPost post = DbPost(
+      uidOfImage: pathToImage,
+      city: _city,
+      description: description,
+      downvotes: [],
+      upvotes: [],
+      uidOfUser: FirebaseAuth.instance.currentUser!.uid,
+    );
+    db.collection("posts").add(post.toMap());
   }
 }
