@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "661705979026",
+    "project_id": "miastoerror",
+    "storage_bucket": "miastoerror.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661705979026:android:e898613c3ac52fef65624b",
+        "android_client_info": {
+          "package_name": "com.example.miastoerror"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661705979026-h2b7gt76fc09hgkqpecb5t6acr28nfju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL9-DJ2LJ3Jaus3AVUVSluYOC1ghtw03A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661705979026-h2b7gt76fc09hgkqpecb5t6acr28nfju.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "661705979026-nhmdfpqmqik13cq638n5m67t3mv6irjs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.miastoerror"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
