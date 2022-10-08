@@ -16,6 +16,8 @@ class MyProvider with ChangeNotifier {
   FirebaseFirestore db = FirebaseFirestore.instance;
   String _city = "";
   String get city => _city;
+  List<DbPost> _posts = [];
+  List<DbPost> get posts => _posts;
 
   // on create
   MyProvider() {
@@ -35,6 +37,11 @@ class MyProvider with ChangeNotifier {
       DbUser user = DbUser.fromFirestore(data.data()!);
       if (user.city != "") {
         _city = user.city;
+        // gettings posts
+        var data =
+            await db.collection("posts").where("city", isEqualTo: _city).get();
+        _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+        // addPost("test", "test2", "");
       }
     }();
     notifyListeners();
@@ -111,10 +118,9 @@ class MyProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addPost(String title, String description, String image,
-      String pathToImage) async {
+  void addPost(String title, String description, String image) async {
     DbPost post = DbPost(
-      uidOfImage: pathToImage,
+      uidOfImage: image,
       city: _city,
       description: description,
       downvotes: [],

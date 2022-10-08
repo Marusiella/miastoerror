@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -30,6 +31,8 @@ void main() async {
       // ignore: avoid_print
       print(e);
     }
+  } else {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   }
   runApp(MultiProvider(
     providers: [
@@ -40,7 +43,8 @@ void main() async {
       routes: {
         '/register': (context) => const Scaffold(body: Start()),
         '/login': (context) => const Scaffold(body: Login()),
-        '/home': (context) => const Scaffold(body: Home()),
+        '/home': (context) =>
+            const SafeArea(top: false, child: Scaffold(body: Home())),
       },
     ),
   ));
