@@ -6,11 +6,13 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:miastoerror/list_of.dart';
+import 'package:miastoerror/select_city.dart';
 import 'package:miastoerror/start_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
-import 'home_screen.dart';
+
 import 'login_screen.dart';
 import 'provider.dart';
 
@@ -43,7 +45,9 @@ void main() async {
       routes: {
         '/register': (context) => const Scaffold(body: Start()),
         '/login': (context) => const Scaffold(body: Login()),
-        '/home': (context) => const SafeArea(child: Scaffold(body: Home())),
+        '/home': (context) => const SafeArea(child: Scaffold(body: ListHome())),
+        '/choose': (context) =>
+            const SafeArea(child: Scaffold(body: SelectCity())),
       },
     ),
   ));

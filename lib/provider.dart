@@ -51,9 +51,9 @@ class MyProvider with ChangeNotifier {
     }();
     notifyListeners();
   }
-  void ifSignedIn(BuildContext context) {
+  void ifSignedIn(BuildContext context) async {
     if (_isSignedIn) {
-      Navigator.pushReplacementNamed(context, '/home');
+      await Navigator.pushReplacementNamed(context, '/home');
     }
     //  else {
     //   Navigator.pushReplacementNamed(context, '/login');
@@ -83,8 +83,29 @@ class MyProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
-    // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, '/home');
+    try {
+      var data = await db
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      DbUser user = DbUser.fromFirestore(data.data()!);
+      if (user.city != "") {
+        _city = user.city;
+        notifyListeners();
+
+        // gettings posts
+        var data =
+            await db.collection("posts").where("city", isEqualTo: _city).get();
+        _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+        // addPost("test", "test2", "");
+      }
+    } catch (_) {}
+    if (city == "") {
+      Navigator.pushReplacementNamed(context, '/choose');
+    } else {
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+    notifyListeners();
   }
 
   void singUp(BuildContext context) async {
@@ -99,8 +120,29 @@ class MyProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
-    // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, '/home');
+    try {
+      var data = await db
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      DbUser user = DbUser.fromFirestore(data.data()!);
+      if (user.city != "") {
+        _city = user.city;
+        notifyListeners();
+
+        // gettings posts
+        var data =
+            await db.collection("posts").where("city", isEqualTo: _city).get();
+        _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+        // addPost("test", "test2", "");
+      }
+    } catch (_) {}
+    if (city == "") {
+      Navigator.pushReplacementNamed(context, '/choose');
+    } else {
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+    notifyListeners();
   }
 
   void logOut(BuildContext context) async {
