@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:miastoerror/models.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProvider with ChangeNotifier {
   bool _isSignedIn = false;
@@ -9,6 +13,10 @@ class MyProvider with ChangeNotifier {
   String _password = "";
   String get password => _password;
   String error = "";
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  String _city = "";
+  String get city => _city;
+
   // on create
   MyProvider() {
     if (FirebaseAuth.instance.currentUser != null) {
@@ -16,6 +24,19 @@ class MyProvider with ChangeNotifier {
     } else {
       _isSignedIn = false;
     }
+    () async {
+      // final prefs = await SharedPreferences.getInstance();
+      // _city = prefs.getString("city") ?? "";
+      var data = await db
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      DbUser user = DbUser.fromFirestore(data.data()!);
+      if (user.city != null) {
+        _city = user.city;
+      }
+    };
+    notifyListeners();
   }
   void ifSignedIn(BuildContext context) {
     if (_isSignedIn) {
@@ -49,6 +70,7 @@ class MyProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, '/home');
   }
 
@@ -64,6 +86,25 @@ class MyProvider with ChangeNotifier {
       notifyListeners();
       return;
     }
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, '/home');
+  }
+
+  void logOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    _isSignedIn = false;
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, '/login');
+    notifyListeners();
+  }
+
+  void setCity(String city) async {
+    _city = city;
+    DbUser user = DbUser(city: city, posts: []);
+    db
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set(user.toMap());
+    notifyListeners();
   }
 }

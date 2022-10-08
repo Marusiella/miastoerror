@@ -13,6 +13,8 @@ import 'home_screen.dart';
 import 'login_screen.dart';
 import 'provider.dart';
 
+const List<String> city = ["niepolomice"];
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
