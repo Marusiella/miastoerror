@@ -11,14 +11,14 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   if (kDebugMode) {
     try {
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-      await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-      await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
+      FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+      FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
       FirebaseDatabase.instance.useDatabaseEmulator('localhost', 9000);
     } catch (e) {
       // ignore: avoid_print
