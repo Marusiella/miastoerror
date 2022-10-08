@@ -5,6 +5,6 @@ class Start extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(child: const Text('Hello World'));
   }
 }

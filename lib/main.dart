@@ -17,13 +17,17 @@ void main() async {
   if (kDebugMode) {
     try {
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-      FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-      FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
+      await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+      await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
       FirebaseDatabase.instance.useDatabaseEmulator('localhost', 9000);
     } catch (e) {
       // ignore: avoid_print
       print(e);
     }
   }
-  runApp(const Start());
+  runApp(const MaterialApp(
+    home: Scaffold(
+      body: Start(),
+    ),
+  ));
 }
