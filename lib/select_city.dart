@@ -25,7 +25,12 @@ class SelectCity extends StatelessWidget {
                 .toList(),
           ),
           TextButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+              onPressed: () {
+                if (Provider.of<MyProvider>(context, listen: false).city !=
+                    "") {
+                  Navigator.pushReplacementNamed(context, '/home');
+                }
+              },
               child: const Text("Next")),
         ],
       ),
