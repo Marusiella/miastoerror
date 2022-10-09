@@ -26,6 +26,11 @@ class MyProvider with ChangeNotifier {
   String get description => _description;
   String _title = "";
   String get title => _title;
+  Future<void> getPostNow() async {
+    var data =
+        await db.collection("posts").where("city", isEqualTo: _city).get();
+    _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+  }
 
   // on create
   MyProvider() {
@@ -44,15 +49,8 @@ class MyProvider with ChangeNotifier {
         DbUser user = DbUser.fromFirestore(data.data()!);
         if (user.city != "") {
           _city = user.city;
-          notifyListeners();
-
+          await getPostNow();
           // gettings posts
-          var data = await db
-              .collection("posts")
-              .where("city", isEqualTo: _city)
-              .get();
-          _posts =
-              data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
           notifyListeners();
           // addPost("test", "test2", "");
         }
@@ -188,6 +186,8 @@ class MyProvider with ChangeNotifier {
       uidOfUser: FirebaseAuth.instance.currentUser!.uid,
     );
     db.collection("posts").add(post.toMap());
+    await getPostNow();
+    notifyListeners();
   }
 
   void addImage(String image) async {
