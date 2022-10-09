@@ -11,6 +11,7 @@ import 'package:miastoerror/select_city.dart';
 import 'package:miastoerror/start_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'add_post.dart';
 import 'firebase_options.dart';
 
 import 'login_screen.dart';
@@ -48,6 +49,7 @@ void main() async {
         '/home': (context) => const SafeArea(child: Scaffold(body: ListHome())),
         '/choose': (context) =>
             const SafeArea(child: Scaffold(body: SelectCity())),
+        '/add': (context) => const SafeArea(child: Scaffold(body: AddPost())),
       },
     ),
   ));

@@ -22,6 +22,9 @@ class ListHome extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
+                  onPressed: () => Navigator.pushNamed(context, "/add"),
+                  icon: const Icon(Icons.add)),
+              IconButton(
                   onPressed: () =>
                       Provider.of<MyProvider>(context, listen: false)
                           .logOut(context),
@@ -51,9 +54,7 @@ class ListHome extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        Provider.of<MyProvider>(context)
-                            .posts[index]
-                            .description,
+                        Provider.of<MyProvider>(context).posts[index].title,
                         style: TextStyle(
                             fontSize: mediaQuery.size.height * 0.05,
                             fontWeight: FontWeight.bold),

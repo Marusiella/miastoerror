@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -18,6 +20,12 @@ class MyProvider with ChangeNotifier {
   String get city => _city;
   List<DbPost> _posts = [];
   List<DbPost> get posts => _posts;
+  String url = "";
+  String get urlImage => url;
+  String _description = "";
+  String get description => _description;
+  String _title = "";
+  String get title => _title;
 
   // on create
   MyProvider() {
@@ -74,7 +82,7 @@ class MyProvider with ChangeNotifier {
   void signIn(BuildContext context) async {
     try {
       await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: _email, password: _password)
+          .signInWithEmailAndPassword(email: _email.trim(), password: _password)
           .then((value) {
         _isSignedIn = true;
       });
@@ -111,7 +119,8 @@ class MyProvider with ChangeNotifier {
   void singUp(BuildContext context) async {
     try {
       await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: _email, password: _password)
+          .createUserWithEmailAndPassword(
+              email: _email.trim(), password: _password)
           .then((value) {
         _isSignedIn = true;
       });
@@ -165,10 +174,12 @@ class MyProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addPost(String title, String description, String image) async {
+  void addPost() async {
+    var name = "images/${DateTime.now()}.jpg";
+    FirebaseStorage.instance.ref().child(name).putFile(File(url));
     DbPost post = DbPost(
       title: title,
-      uidOfImage: image,
+      uidOfImage: name,
       city: _city,
       description: description,
       downvotes: [],
@@ -176,5 +187,20 @@ class MyProvider with ChangeNotifier {
       uidOfUser: FirebaseAuth.instance.currentUser!.uid,
     );
     db.collection("posts").add(post.toMap());
+  }
+
+  void addImage(String image) async {
+    url = image;
+    notifyListeners();
+  }
+
+  void setDescription(String description) async {
+    _description = description;
+    notifyListeners();
+  }
+
+  void setTitle(String title) async {
+    _title = title;
+    notifyListeners();
   }
 }

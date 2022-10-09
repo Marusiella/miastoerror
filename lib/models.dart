@@ -49,7 +49,8 @@ class DbPost {
         upvotes: listU,
         downvotes: listD,
       );
-    } catch (_) {
+    } catch (e) {
+      print(e);
       return DbPost(
         title: "error",
         uidOfImage: "error",
@@ -63,6 +64,7 @@ class DbPost {
   }
   Map<String, dynamic> toMap() {
     return {
+      'title': title,
       'uidOfImage': uidOfImage,
       'uidOfUser': uidOfUser,
       'description': description,
