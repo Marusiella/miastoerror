@@ -175,10 +175,11 @@ class MyProvider with ChangeNotifier {
 
   void addPost() async {
     var name = "images/${DateTime.now()}.jpg";
-    FirebaseStorage.instance.ref().child(name).putFile(File(url));
+    var x = FirebaseStorage.instance.ref().child(name).putFile(File(this.url));
+    var url = await (await x).ref.getDownloadURL();
     DbPost post = DbPost(
       title: title,
-      uidOfImage: name,
+      uidOfImage: url,
       city: _city,
       description: description,
       downvotes: [],

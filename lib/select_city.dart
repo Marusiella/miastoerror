@@ -43,5 +43,10 @@ class SelectCity extends StatelessWidget {
 }
 
 String upFirstLetter(String text) {
-  return text[0].toUpperCase() + text.substring(1);
+  try {
+    return text[0].toUpperCase() + text.substring(1);
+  } catch (_) {
+    return text;
+  }
+  // return text[0].toUpperCase() + text.substring(1);
 }

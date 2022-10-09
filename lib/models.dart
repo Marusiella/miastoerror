@@ -1,3 +1,5 @@
+import 'package:firebase_storage/firebase_storage.dart';
+
 class DbUser {
   final String city; // niepolomice
 
@@ -33,12 +35,14 @@ class DbPost {
     required this.upvotes,
     required this.downvotes,
   });
+
   // write constructor for class from firebase
   factory DbPost.fromFirestore(Map<String, dynamic> map) {
     var arrayU = map['upvotes'];
     var arrayD = map['downvotes'];
     var listU = arrayU.cast<String>();
     var listD = arrayD.cast<String>();
+
     try {
       return DbPost(
         title: map['title'],

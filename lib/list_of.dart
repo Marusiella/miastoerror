@@ -51,20 +51,72 @@ class ListHome extends StatelessWidget {
               itemCount: Provider.of<MyProvider>(context).posts.length,
               itemBuilder: (context, index) {
                 return Container(
-                  child: Row(
-                    children: [
-                      Text(
-                        Provider.of<MyProvider>(context).posts[index].title,
-                        style: TextStyle(
-                            fontSize: mediaQuery.size.height * 0.05,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  height: height * 0.2,
+                  child: Card(
+                    // border radius 10
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    color: Color.fromARGB(21, 255, 255, 255),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25, right: 10, top: 10, bottom: 10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: SizedBox(
+                              height: height * 0.2,
+                              width: height * 0.17,
+                              child: Image.network(
+                                Provider.of<MyProvider>(context)
+                                    .posts[index]
+                                    .uidOfImage,
+                                // height: height * 0.2,
+                                fit: BoxFit.cover,
+                                // width: height * 0.2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: Column(
+                            children: [
+                              Text(
+                                Provider.of<MyProvider>(context)
+                                    .posts[index]
+                                    .title,
+                                style: TextStyle(
+                                    fontSize: mediaQuery.size.height * 0.03,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                ifTooLongShort(Provider.of<MyProvider>(context)
+                                    .posts[index]
+                                    .description),
+                                style: TextStyle(
+                                    fontSize: mediaQuery.size.height * 0.025,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
             ))
       ],
     );
+  }
+}
+
+String ifTooLongShort(String text) {
+  if (text.length > 20) {
+    return text.substring(0, 20) + "...";
+  } else {
+    return text;
   }
 }
