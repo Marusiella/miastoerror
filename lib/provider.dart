@@ -53,6 +53,7 @@ class MyProvider with ChangeNotifier {
               .get();
           _posts =
               data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+          notifyListeners();
           // addPost("test", "test2", "");
         }
       } catch (_) {}
