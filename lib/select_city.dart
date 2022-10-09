@@ -29,6 +29,10 @@ class SelectCity extends StatelessWidget {
                 if (Provider.of<MyProvider>(context, listen: false).city !=
                     "") {
                   Navigator.pushReplacementNamed(context, '/home');
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Please select a city"),
+                  ));
                 }
               },
               child: const Text("Next")),
