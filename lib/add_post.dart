@@ -34,8 +34,8 @@ class _AddPostState extends State<AddPost> {
           ),
         TextButton(
             onPressed: () async {
-              final pickedFile =
-                  await _picker.pickImage(source: ImageSource.camera);
+              final pickedFile = await _picker.pickImage(
+                  source: ImageSource.camera, imageQuality: 1);
               Provider.of<MyProvider>(context, listen: false)
                   .addImage(pickedFile!.path);
             },
