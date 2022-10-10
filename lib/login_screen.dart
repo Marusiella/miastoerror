@@ -14,10 +14,6 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      Provider.of<MyProvider>(context, listen: false).ifSignedIn(context);
-      print("init state");
-    });
   }
 
   @override

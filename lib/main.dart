@@ -15,6 +15,7 @@ import 'add_post.dart';
 import 'firebase_options.dart';
 
 import 'login_screen.dart';
+import 'presentation.dart';
 import 'provider.dart';
 
 const List<String> city = ["niepolomice"];
@@ -42,8 +43,9 @@ void main() async {
       ChangeNotifierProvider(create: (_) => MyProvider()),
     ],
     child: MaterialApp(
-      initialRoute: "/login",
+      initialRoute: "/presentation",
       routes: {
+        '/presentation': (context) => const Scaffold(body: Presentation()),
         '/register': (context) => const Scaffold(body: Start()),
         '/login': (context) => const Scaffold(body: Login()),
         '/home': (context) => const SafeArea(child: Scaffold(body: ListHome())),
