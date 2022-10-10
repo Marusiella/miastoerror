@@ -69,11 +69,13 @@ class MyProvider with ChangeNotifier {
   }
 
   void setEmail(String email) {
+    error = "";
     _email = email;
     notifyListeners();
   }
 
   void setPassword(String password) {
+    error = "";
     _password = password;
     notifyListeners();
   }

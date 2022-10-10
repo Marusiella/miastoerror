@@ -8,59 +8,134 @@ class Register extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text("Register screen"),
-          Text("Already have an account?"),
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/login');
-            },
-            child: const Text("Login"),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                  ),
-                  onChanged: (value) =>
-                      Provider.of<MyProvider>(context, listen: false)
-                          .setEmail(value),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                  ),
-                  onChanged: (value) =>
-                      Provider.of<MyProvider>(context, listen: false)
-                          .setPassword(value),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Provider.of<MyProvider>(context, listen: false)
-                        .singUp(context);
-                  },
-                  child: const Text("Sign up"),
-                ),
-                Text(Provider.of<MyProvider>(context).error)
-              ],
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: const Color.fromARGB(255, 33, 34, 35),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 70),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.8),
+              alignment: Alignment.centerLeft,
+              child: const Text("Zarejestruj się.",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w500)),
             ),
-          )
-        ],
+            SizedBox(height: MediaQuery.of(context).size.width * 0.05),
+            Container(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.8),
+              child: Text(
+                  "Dzięki tobie nasze miasto może wyglądać lepiej! Poprzez współpracę czynimy lepiej.",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Colors.white.withAlpha(209),
+                      fontSize: 23,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w300)),
+            ),
+            Container(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.8),
+              child: Column(
+                children: [
+                  TextField(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        hintText: 'example@example.com',
+                        hintStyle: const TextStyle(color: Colors.white),
+                        labelText: "Email",
+                        labelStyle: const TextStyle(color: Colors.white),
+                        errorText: Provider.of<MyProvider>(context).error != ""
+                            ? Provider.of<MyProvider>(context, listen: false)
+                                .error
+                            : null
+                        // input color white
+                        ),
+                    onChanged: (value) =>
+                        Provider.of<MyProvider>(context, listen: false)
+                            .setEmail(value),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        hintText: 'strongpassword',
+                        hintStyle: const TextStyle(color: Colors.white),
+                        labelText: "Password",
+                        labelStyle: const TextStyle(color: Colors.white),
+                        errorText: Provider.of<MyProvider>(context).error != ""
+                            ? Provider.of<MyProvider>(context, listen: false)
+                                .error
+                            : null
+                        // input color white
+                        ),
+                    onChanged: (value) =>
+                        Provider.of<MyProvider>(context, listen: false)
+                            .setPassword(value),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.39),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Masz już konto?",
+                        style: TextStyle(
+                            fontSize: 18, color: Colors.white.withAlpha(209)),
+                      ),
+                      TextButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, "/login"),
+                          child: const Text(
+                            "Zaloguj się!",
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ))
+                    ],
+                  ),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.28,
+                              vertical: 20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () =>
+                          Provider.of<MyProvider>(context, listen: false)
+                              .singUp(context),
+                      child: const Text(
+                        "Zarejestruj",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      )),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

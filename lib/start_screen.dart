@@ -13,6 +13,6 @@ class Start extends StatefulWidget {
 class _StartState extends State<Start> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: const Register());
+    return const Register();
   }
 }
