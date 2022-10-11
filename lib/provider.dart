@@ -28,9 +28,14 @@ class MyProvider with ChangeNotifier {
   String _title = "";
   String get title => _title;
   Future<void> getPostNow() async {
-    var data =
-        await db.collection("posts").where("city", isEqualTo: _city).get();
+    var data = await db
+        .collection("posts")
+        .where("city", isEqualTo: _city)
+        .get(const GetOptions(source: Source.server));
+
     _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+
+    notifyListeners();
   }
 
   // on create
@@ -111,8 +116,10 @@ class MyProvider with ChangeNotifier {
       }
     } catch (_) {}
     if (city == "") {
+      Navigator.pop(context);
       Navigator.pushReplacementNamed(context, '/choose');
     } else {
+      Navigator.pop(context);
       Navigator.pushReplacementNamed(context, '/home');
     }
     notifyListeners();
@@ -149,8 +156,10 @@ class MyProvider with ChangeNotifier {
       }
     } catch (_) {}
     if (city == "") {
+      Navigator.pop(context);
       Navigator.pushReplacementNamed(context, '/choose');
     } else {
+      Navigator.pop(context);
       Navigator.pushReplacementNamed(context, '/home');
     }
     notifyListeners();

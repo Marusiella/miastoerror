@@ -55,15 +55,13 @@ class ListHome extends StatelessWidget {
           SizedBox(
               height: height * (1 - 0.24),
               child: RefreshIndicator(
-                onRefresh: () async {
-                  await Provider.of<MyProvider>(context, listen: false)
-                      .getPostNow();
-                },
+                onRefresh: () => Provider.of<MyProvider>(context, listen: false)
+                    .getPostNow(),
                 child: ListView.builder(
                   itemCount: Provider.of<MyProvider>(context).posts.length,
                   itemBuilder: (context, index) {
                     return SizedBox(
-                      height: height * 0.2,
+                      height: height * 0.17,
                       child: Row(
                         children: [
                           Padding(
@@ -72,8 +70,8 @@ class ListHome extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: SizedBox(
-                                height: height * 0.2,
-                                width: height * 0.17,
+                                height: height * 0.15,
+                                width: height * 0.14,
                                 child: Image.network(
                                   Provider.of<MyProvider>(context)
                                       .posts[index]
@@ -88,6 +86,7 @@ class ListHome extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(9.0),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   Provider.of<MyProvider>(context)
