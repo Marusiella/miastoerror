@@ -28,6 +28,8 @@ void main() async {
   if (kDebugMode) {
     try {
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+      await FirebaseFirestore.instance
+          .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
 
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
       await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);

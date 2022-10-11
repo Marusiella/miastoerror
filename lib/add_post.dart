@@ -25,42 +25,99 @@ class _AddPostState extends State<AddPost> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color.fromARGB(255, 33, 34, 35),
+      width: MediaQuery.of(context).size.width,
       child: Column(children: [
-        Text("Dodawanie zgłoszenia"),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "Dodawanie zgłoszenia",
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.045,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Roboto",
+                color: Colors.white),
+          ),
+        ),
         if (Provider.of<MyProvider>(context).urlImage != "")
           Image.file(
             File(Provider.of<MyProvider>(context).urlImage),
-            width: 200,
+            width: MediaQuery.of(context).size.height * 0.3,
           ),
         TextButton(
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10))),
             onPressed: () async {
               final pickedFile = await _picker.pickImage(
                   source: ImageSource.camera, imageQuality: 25);
               Provider.of<MyProvider>(context, listen: false)
                   .addImage(pickedFile!.path);
             },
-            child: Text(Provider.of<MyProvider>(context).urlImage == ""
-                ? "Dodaj zdjęcie"
-                : "Ponów zdjęcie")),
-        TextField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Tytuł',
-          ),
-          onChanged: (value) =>
-              Provider.of<MyProvider>(context, listen: false).setTitle(value),
+            child: Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: Text(
+                Provider.of<MyProvider>(context).urlImage == ""
+                    ? "Dodaj zdjęcie"
+                    : "Ponów zdjęcie",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+            )),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
         ),
-        TextField(
-          keyboardType: TextInputType.multiline,
-          maxLines: null,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Opis',
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: Column(
+            children: [
+              TextField(
+                decoration: const InputDecoration(
+                  helperStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white),
+                  errorStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  labelText: 'Tytuł',
+                ),
+                onChanged: (value) =>
+                    Provider.of<MyProvider>(context, listen: false)
+                        .setTitle(value),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: const InputDecoration(
+                  // color white of all
+                  helperStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white),
+                  errorStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  labelText: 'Opis',
+                ),
+                onChanged: (value) =>
+                    Provider.of<MyProvider>(context, listen: false)
+                        .setDescription(value),
+              ),
+            ],
           ),
-          onChanged: (value) => Provider.of<MyProvider>(context, listen: false)
-              .setDescription(value),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.02,
         ),
         TextButton(
+            style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10))),
             onPressed: () {
               if (Provider.of<MyProvider>(context, listen: false).urlImage !=
                       "" &&
@@ -70,12 +127,16 @@ class _AddPostState extends State<AddPost> {
                 Provider.of<MyProvider>(context, listen: false).addPost();
                 Navigator.pushReplacementNamed(context, '/home');
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("Wypełnij wszystkie pola"),
                 ));
               }
             },
-            child: const Text("Dodaj"))
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Dodaj",
+                  style: TextStyle(color: Colors.black, fontSize: 20)),
+            ))
       ]),
     );
   }
