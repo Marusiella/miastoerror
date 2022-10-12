@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:miastoerror/models.dart';
@@ -58,23 +60,38 @@ class InfoScreen extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          child: Text(
-                            post.description,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: "Roboto",
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ),
+                            height: MediaQuery.of(context).size.height * 0.42,
+                            child: ListView(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).size.width *
+                                          0.05,
+                                      right: MediaQuery.of(context).size.width *
+                                          0.05),
+                                  child: Text(post.description,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontFamily: "Roboto",
+                                          fontWeight: FontWeight.w300)),
+                                )
+                              ],
+                            )),
                         TextButton(
-                          child: const Text("Uruchom mapy"),
-                          onPressed: () async {
-                            Navigator.pushNamed(context, "/map",
-                                arguments: [post.latitude, post.longitude]);
-                          },
-                        ),
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onPressed: () => Navigator.pushNamed(
+                                context, "/map",
+                                arguments: [post.latitude, post.longitude]),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text("Przejdź do mapy",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20)),
+                            ))
                       ],
                     )),
               ],
@@ -83,3 +100,5 @@ class InfoScreen extends StatelessWidget {
     ));
   }
 }
+// Navigator.pushNamed(context, "/map",
+//                                 arguments: [post.latitude, post.longitude]
