@@ -24,7 +24,7 @@ class ListHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, "/map"),
                     icon: const Icon(
                       Icons.map,
                       color: Colors.white,

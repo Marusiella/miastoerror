@@ -14,7 +14,6 @@ class Presentation extends StatefulWidget {
 class _PresentationState extends State<Presentation> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero, () {
       Provider.of<MyProvider>(context, listen: false).ifSignedIn(context);

@@ -17,7 +17,6 @@ class _AddPostState extends State<AddPost> {
   late ImagePicker _picker;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _picker = ImagePicker();
     try {
