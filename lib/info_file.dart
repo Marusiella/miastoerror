@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miastoerror/models.dart';
+import 'package:miastoerror/provider.dart';
+import 'package:provider/provider.dart';
 
 class InfoScreen extends StatelessWidget {
   const InfoScreen({Key? key}) : super(key: key);
@@ -9,7 +11,6 @@ class InfoScreen extends StatelessWidget {
     final String googleMapslocationUrl =
         "https://www.google.com/maps/search/?api=1&query=${post.latitude},${post.longitude}";
     final String encodedURl = Uri.encodeFull(googleMapslocationUrl);
-
     return Stack(
       children: [
         SizedBox(
@@ -73,20 +74,43 @@ class InfoScreen extends StatelessWidget {
                                 )
                               ],
                             )),
-                        TextButton(
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            onPressed: () => Navigator.pushNamed(
-                                context, "/map",
-                                arguments: [post.latitude, post.longitude]),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("Przejdź do mapy",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20)),
-                            ))
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(
+                                style: TextButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10))),
+                                onPressed: () => Navigator.pushNamed(
+                                    context, "/map",
+                                    arguments: [post.latitude, post.longitude]),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Przejdź do mapy",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 20)),
+                                )),
+                            if (Provider.of<MyProvider>(context).isAdmin)
+                              TextButton(
+                                  style: TextButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  onPressed: () => Provider.of<MyProvider>(
+                                          context,
+                                          listen: false)
+                                      .deletePost(post, context),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text("Usuń",
+                                        style: TextStyle(
+                                            color: Colors.red, fontSize: 20)),
+                                  ))
+                          ],
+                        )
                       ],
                     )),
               ],

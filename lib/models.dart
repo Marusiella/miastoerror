@@ -1,16 +1,15 @@
-import 'package:firebase_storage/firebase_storage.dart';
-
 class DbUser {
   final String city; // niepolomice
-  final bool isAdmin = false;
+  final bool isAdmin;
 
-  DbUser({required this.city, required isAdmin});
+  DbUser({required this.city, required this.isAdmin});
 
   factory DbUser.fromFirestore(Map<String, dynamic> json) {
     try {
+      bool isAdmin = json['isAdmin'];
       return DbUser(
         city: json['city'],
-        isAdmin: json['isAdmin'],
+        isAdmin: isAdmin,
       );
     } catch (_) {
       return DbUser(
@@ -27,6 +26,7 @@ class DbUser {
 }
 
 class DbPost {
+  final String id;
   final String title; // niepolomice
   final String uidOfImage; // from firebase storage
   final String uidOfUser; // from firebase auth
@@ -38,6 +38,7 @@ class DbPost {
   final double longitude;
 
   DbPost({
+    required this.id,
     required this.title,
     required this.uidOfImage,
     required this.uidOfUser,
@@ -50,7 +51,7 @@ class DbPost {
   });
 
   // write constructor for class from firebase
-  factory DbPost.fromFirestore(Map<String, dynamic> map) {
+  factory DbPost.fromFirestore(Map<String, dynamic> map, String id) {
     var arrayU = map['upvotes'];
     var arrayD = map['downvotes'];
     var listU = arrayU.cast<String>();
@@ -58,6 +59,7 @@ class DbPost {
 
     try {
       return DbPost(
+        id: id,
         title: map['title'],
         uidOfImage: map['uidOfImage'],
         uidOfUser: map['uidOfUser'],
@@ -71,6 +73,7 @@ class DbPost {
     } catch (e) {
       print(e);
       return DbPost(
+        id: id,
         title: "error",
         uidOfImage:
             "https://freesvg.org/img/molumen_red_square_error_warning_icon.png",

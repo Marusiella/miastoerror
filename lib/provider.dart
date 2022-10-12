@@ -31,14 +31,16 @@ class MyProvider with ChangeNotifier {
   double get latitude => _latitude;
   double _longitude = 0;
   double get longitude => _longitude;
-
+  bool isAdmin = false;
+  bool get admin => isAdmin;
   Future<void> getPostNow() async {
     var data = await db
         .collection("posts")
         .where("city", isEqualTo: _city)
         .get(const GetOptions(source: Source.server));
 
-    _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+    _posts =
+        data.docs.map((e) => DbPost.fromFirestore(e.data(), e.id)).toList();
 
     notifyListeners();
   }
@@ -60,6 +62,8 @@ class MyProvider with ChangeNotifier {
         DbUser user = DbUser.fromFirestore(data.data()!);
         if (user.city != "") {
           _city = user.city;
+
+          isAdmin = user.isAdmin;
           await getPostNow();
           // gettings posts
           notifyListeners();
@@ -116,7 +120,8 @@ class MyProvider with ChangeNotifier {
         // gettings posts
         var data =
             await db.collection("posts").where("city", isEqualTo: _city).get();
-        _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+        _posts =
+            data.docs.map((e) => DbPost.fromFirestore(e.data(), e.id)).toList();
         // addPost("test", "test2", "");
       }
     } catch (_) {}
@@ -156,7 +161,8 @@ class MyProvider with ChangeNotifier {
         // gettings posts
         var data =
             await db.collection("posts").where("city", isEqualTo: _city).get();
-        _posts = data.docs.map((e) => DbPost.fromFirestore(e.data())).toList();
+        _posts =
+            data.docs.map((e) => DbPost.fromFirestore(e.data(), e.id)).toList();
         // addPost("test", "test2", "");
       }
     } catch (_) {}
@@ -196,6 +202,7 @@ class MyProvider with ChangeNotifier {
     var x = FirebaseStorage.instance.ref().child(name).putFile(File(this.url));
     var url = await (await x).ref.getDownloadURL();
     DbPost post = DbPost(
+      id: "",
       title: title,
       uidOfImage: url,
       city: _city,
@@ -264,5 +271,11 @@ class MyProvider with ChangeNotifier {
     _latitude = position.latitude;
     _longitude = position.longitude;
     notifyListeners();
+  }
+
+  void deletePost(DbPost post, BuildContext context) {
+    db.collection("posts").doc(post.id).delete();
+    getPostNow();
+    Navigator.of(context).pop();
   }
 }
