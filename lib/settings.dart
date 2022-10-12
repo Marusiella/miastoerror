@@ -14,6 +14,9 @@ class SettingsScreen extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: Column(
         children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+          ),
           IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(
@@ -22,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
               )),
           TextButton(
               style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 33, 34, 35),
+                  backgroundColor: const Color.fromARGB(255, 33, 34, 35),
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.28,
                       vertical: 16),

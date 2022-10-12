@@ -46,12 +46,11 @@ dependencies:
   firebase_crashlytics: ^2.8.13
   firebase_database: ^9.1.7
   firebase_performance: ^0.8.3+3
-  shared_preferences: ^2.0.15
+
   image_picker: ^0.8.6
   flutter_svg: ^1.1.5
   geolocator: ^9.0.2
   flutter_osm_plugin: ^0.40.3
-  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:

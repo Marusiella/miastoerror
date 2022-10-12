@@ -33,7 +33,7 @@ class _AddPostState extends State<AddPost> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 33, 34, 35),
+      color: const Color.fromARGB(255, 33, 34, 35),
       width: MediaQuery.of(context).size.width,
       child: Column(children: [
         Padding(
@@ -69,7 +69,7 @@ class _AddPostState extends State<AddPost> {
                 Provider.of<MyProvider>(context).urlImage == ""
                     ? "Dodaj zdjęcie"
                     : "Ponów zdjęcie",
-                style: TextStyle(color: Colors.black, fontSize: 20),
+                style: const TextStyle(color: Colors.black, fontSize: 20),
               ),
             )),
         SizedBox(
