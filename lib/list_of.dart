@@ -54,61 +54,67 @@ class ListHome extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: Provider.of<MyProvider>(context).posts.length,
                   itemBuilder: (context, index) {
-                    return SizedBox(
-                      height: height * 0.17,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 25, right: 10, top: 10, bottom: 10),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: SizedBox(
-                                height: height * 0.15,
-                                width: height * 0.14,
-                                child: Image.network(
-                                  Provider.of<MyProvider>(context)
-                                      .posts[index]
-                                      .uidOfImage,
-                                  // height: height * 0.2,
-                                  fit: BoxFit.cover,
-                                  // width: height * 0.2,
+                    return InkWell(
+                      onTap: () => Navigator.pushNamed(context, "/info",
+                          arguments:
+                              Provider.of<MyProvider>(context, listen: false)
+                                  .posts[index]),
+                      child: SizedBox(
+                        height: height * 0.17,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 25, right: 10, top: 10, bottom: 10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: SizedBox(
+                                  height: height * 0.15,
+                                  width: height * 0.14,
+                                  child: Image.network(
+                                    Provider.of<MyProvider>(context)
+                                        .posts[index]
+                                        .uidOfImage,
+                                    // height: height * 0.2,
+                                    fit: BoxFit.cover,
+                                    // width: height * 0.2,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(9.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  Provider.of<MyProvider>(context)
-                                      .posts[index]
-                                      .title,
-                                  style: TextStyle(
-                                      fontSize: mediaQuery.size.height * 0.03,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                                SizedBox(
-                                  width: mediaQuery.size.width * 0.45,
-                                  child: Text(
-                                    ifTooLongShort(
-                                        Provider.of<MyProvider>(context)
-                                            .posts[index]
-                                            .description),
+                            Padding(
+                              padding: const EdgeInsets.all(9.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    Provider.of<MyProvider>(context)
+                                        .posts[index]
+                                        .title,
                                     style: TextStyle(
-                                        fontSize:
-                                            mediaQuery.size.height * 0.025,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white70),
+                                        fontSize: mediaQuery.size.height * 0.03,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    width: mediaQuery.size.width * 0.45,
+                                    child: Text(
+                                      ifTooLongShort(
+                                          Provider.of<MyProvider>(context)
+                                              .posts[index]
+                                              .description),
+                                      style: TextStyle(
+                                          fontSize:
+                                              mediaQuery.size.height * 0.025,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white70),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },

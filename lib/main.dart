@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import 'add_post.dart';
 import 'firebase_options.dart';
+import 'info_file.dart';
 import 'map_screen.dart';
 import 'settings.dart';
 import 'login_screen.dart';
@@ -58,6 +59,7 @@ void main() async {
         '/add': (context) => const SafeArea(child: Scaffold(body: AddPost())),
         '/settings': (context) => const Scaffold(body: SettingsScreen()),
         '/map': (context) => const Scaffold(body: MapScreen()),
+        '/info': (context) => const Scaffold(body: InfoScreen()),
       },
     ),
   ));
