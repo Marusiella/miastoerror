@@ -32,7 +32,6 @@ class _AddPostState extends State<AddPost> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).viewInsets.bottom);
     return Container(
       color: const Color.fromARGB(255, 33, 34, 35),
       width: MediaQuery.of(context).size.width,

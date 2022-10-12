@@ -10,8 +10,7 @@ class InfoScreen extends StatelessWidget {
         "https://www.google.com/maps/search/?api=1&query=${post.latitude},${post.longitude}";
     final String encodedURl = Uri.encodeFull(googleMapslocationUrl);
 
-    return Container(
-        child: Stack(
+    return Stack(
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.45,
@@ -92,8 +91,18 @@ class InfoScreen extends StatelessWidget {
                     )),
               ],
             )),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 60),
+          child: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+                size: 34,
+              )),
+        ),
       ],
-    ));
+    );
   }
 }
 // Navigator.pushNamed(context, "/map",
