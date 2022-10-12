@@ -56,6 +56,7 @@ void main() async {
             const SafeArea(child: Scaffold(body: SelectCity())),
         '/add': (context) => const SafeArea(child: Scaffold(body: AddPost())),
         '/settings': (context) => const Scaffold(body: SettingsScreen()),
+        // '/map' : (context) => const Scaffold(body: MapScreen()),
       },
     ),
   ));
