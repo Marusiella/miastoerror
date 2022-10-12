@@ -105,5 +105,3 @@ class InfoScreen extends StatelessWidget {
     );
   }
 }
-// Navigator.pushNamed(context, "/map",
-//                                 arguments: [post.latitude, post.longitude]

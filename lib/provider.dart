@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:miastoerror/models.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProvider with ChangeNotifier {
   bool _isSignedIn = false;
