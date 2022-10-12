@@ -24,11 +24,9 @@ class ListHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () =>
-                        Provider.of<MyProvider>(context, listen: false)
-                            .logOut(context),
+                    onPressed: () {},
                     icon: const Icon(
-                      Icons.logout,
+                      Icons.map,
                       color: Colors.white,
                     )),
                 Text(
@@ -40,11 +38,7 @@ class ListHome extends StatelessWidget {
                       color: Colors.white),
                 ),
                 IconButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Not implemented yet"),
-                      ));
-                    },
+                    onPressed: () => Navigator.pushNamed(context, "/settings"),
                     icon: const Icon(
                       Icons.settings,
                       color: Colors.white,

@@ -20,6 +20,15 @@ class _AddPostState extends State<AddPost> {
     // TODO: implement initState
     super.initState();
     _picker = ImagePicker();
+    try {
+      Provider.of<MyProvider>(context, listen: false).determinePosition();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please turn on location in settings"),
+        ),
+      );
+    }
   }
 
   @override

@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 
 import 'add_post.dart';
 import 'firebase_options.dart';
-
+import 'settings.dart';
 import 'login_screen.dart';
 import 'presentation.dart';
 import 'provider.dart';
@@ -55,6 +55,7 @@ void main() async {
         '/choose': (context) =>
             const SafeArea(child: Scaffold(body: SelectCity())),
         '/add': (context) => const SafeArea(child: Scaffold(body: AddPost())),
+        '/settings': (context) => const Scaffold(body: SettingsScreen()),
       },
     ),
   ));

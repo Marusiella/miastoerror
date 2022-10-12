@@ -2,13 +2,22 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class DbUser {
   final String city; // niepolomice
+  final bool isAdmin = false;
 
-  DbUser({required this.city});
+  DbUser({required this.city, required isAdmin});
 
   factory DbUser.fromFirestore(Map<String, dynamic> json) {
-    return DbUser(
-      city: json['city'],
-    );
+    try {
+      return DbUser(
+        city: json['city'],
+        isAdmin: json['isAdmin'],
+      );
+    } catch (_) {
+      return DbUser(
+        city: json['city'],
+        isAdmin: false,
+      );
+    }
   }
   Map<String, dynamic> toMap() {
     return {
@@ -25,6 +34,8 @@ class DbPost {
   final String city; // niepolomice
   final List<String> upvotes; // uid of users
   final List<String> downvotes; // uid of users
+  final double latitude;
+  final double longitude;
 
   DbPost({
     required this.title,
@@ -34,6 +45,8 @@ class DbPost {
     required this.city,
     required this.upvotes,
     required this.downvotes,
+    required this.latitude,
+    required this.longitude,
   });
 
   // write constructor for class from firebase
@@ -52,17 +65,22 @@ class DbPost {
         city: map['city'],
         upvotes: listU,
         downvotes: listD,
+        latitude: map['latitude'],
+        longitude: map['longitude'],
       );
     } catch (e) {
       print(e);
       return DbPost(
         title: "error",
-        uidOfImage: "error",
+        uidOfImage:
+            "https://freesvg.org/img/molumen_red_square_error_warning_icon.png",
         uidOfUser: "error",
         description: "error",
         city: "error",
         upvotes: [],
         downvotes: [],
+        latitude: 0,
+        longitude: 0,
       );
     }
   }
@@ -75,6 +93,8 @@ class DbPost {
       'city': city,
       'upvotes': upvotes,
       'downvotes': downvotes,
+      'latitude': latitude,
+      'longitude': longitude,
     };
   }
 }
