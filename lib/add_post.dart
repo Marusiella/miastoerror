@@ -32,10 +32,12 @@ class _AddPostState extends State<AddPost> {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).viewInsets.bottom);
     return Container(
       color: const Color.fromARGB(255, 33, 34, 35),
       width: MediaQuery.of(context).size.width,
-      child: Column(children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
@@ -72,9 +74,6 @@ class _AddPostState extends State<AddPost> {
                 style: const TextStyle(color: Colors.black, fontSize: 20),
               ),
             )),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.9,
           child: Column(
@@ -117,9 +116,6 @@ class _AddPostState extends State<AddPost> {
               ),
             ],
           ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
         ),
         TextButton(
             style: TextButton.styleFrom(
