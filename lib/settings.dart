@@ -9,15 +9,31 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: const Color.fromARGB(255, 33, 34, 35),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: Column(
         children: [
-          IconButton(
-              onPressed: () => Provider.of<MyProvider>(context, listen: false)
-                  .logOut(context),
-              icon: const Icon(
-                Icons.logout,
-                color: Colors.white,
-              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Text(
+                "Wyloguj",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20),
+              ),
+              IconButton(
+                  onPressed: () =>
+                      Provider.of<MyProvider>(context, listen: false)
+                          .logOut(context),
+                  icon: const Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  )),
+            ],
+          )
         ],
       ),
     );
