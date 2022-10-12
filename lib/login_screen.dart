@@ -26,123 +26,142 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.only(top: 70),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.8),
-              alignment: Alignment.centerLeft,
-              child: const Text("Zaloguj się.",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w500)),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.width * 0.05),
-            Container(
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.8),
-              child: Text(
-                  "Miło nam z naszej strony, że postanwoiłeś wrócić spowrotem do naszej apliakcji.",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.white.withAlpha(209),
-                      fontSize: 23,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w300)),
-            ),
-            Container(
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.8),
-              child: Column(
-                children: [
-                  TextField(
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        border: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        hintText: 'example@example.com',
-                        hintStyle: const TextStyle(color: Colors.white),
-                        labelText: "Email",
-                        labelStyle: const TextStyle(color: Colors.white),
-                        errorText: Provider.of<MyProvider>(context).error != ""
-                            ? Provider.of<MyProvider>(context, listen: false)
-                                .error
-                            : null
-                        // input color white
-                        ),
-                    onChanged: (value) =>
-                        Provider.of<MyProvider>(context, listen: false)
-                            .setEmail(value),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        border: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        hintText: 'strongpassword',
-                        hintStyle: const TextStyle(color: Colors.white),
-                        labelText: "Password",
-                        labelStyle: const TextStyle(color: Colors.white),
-                        errorText: Provider.of<MyProvider>(context).error != ""
-                            ? Provider.of<MyProvider>(context, listen: false)
-                                .error
-                            : null
-                        // input color white
-                        ),
-                    onChanged: (value) =>
-                        Provider.of<MyProvider>(context, listen: false)
-                            .setPassword(value),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              children: [
+                Container(
+                  constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.8),
+                  alignment: Alignment.centerLeft,
+                  child: const Text("Zaloguj się.",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500)),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.width * 0.05),
+                Container(
+                  constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.8),
+                  child: Text(
+                      "Miło nam z naszej strony, że postanwoiłeś wrócić spowrotem do naszej apliakcji.",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.white.withAlpha(209),
+                          fontSize: 23,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w300)),
+                ),
+                Container(
+                  constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        "Nie masz konta?",
-                        style: TextStyle(
-                            fontSize: 18, color: Colors.white.withAlpha(209)),
+                      Column(
+                        children: [
+                          TextField(
+                            style: const TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                border: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                hintText: 'example@example.com',
+                                hintStyle: const TextStyle(color: Colors.white),
+                                labelText: "Email",
+                                labelStyle:
+                                    const TextStyle(color: Colors.white),
+                                errorText:
+                                    Provider.of<MyProvider>(context).error != ""
+                                        ? Provider.of<MyProvider>(context,
+                                                listen: false)
+                                            .error
+                                        : null
+                                // input color white
+                                ),
+                            onChanged: (value) =>
+                                Provider.of<MyProvider>(context, listen: false)
+                                    .setEmail(value),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            style: const TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                border: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                hintText: 'strongpassword',
+                                hintStyle: const TextStyle(color: Colors.white),
+                                labelText: "Password",
+                                labelStyle:
+                                    const TextStyle(color: Colors.white),
+                                errorText:
+                                    Provider.of<MyProvider>(context).error != ""
+                                        ? Provider.of<MyProvider>(context,
+                                                listen: false)
+                                            .error
+                                        : null
+                                // input color white
+                                ),
+                            onChanged: (value) =>
+                                Provider.of<MyProvider>(context, listen: false)
+                                    .setPassword(value),
+                          ),
+                        ],
                       ),
-                      TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, "/register"),
-                          child: const Text(
-                            "Zarejestruj się!",
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ))
+                      // SizedBox(height: MediaQuery.of(context).size.height * 0.35),
                     ],
                   ),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.28,
-                              vertical: 20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15))),
-                      onPressed: () =>
-                          Provider.of<MyProvider>(context, listen: false)
-                              .signIn(context),
-                      child: const Text(
-                        "Zaloguj",
-                        style: TextStyle(color: Colors.black, fontSize: 17),
-                      )),
-                ],
-              ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Nie masz konta?",
+                      style: TextStyle(
+                          fontSize: 18, color: Colors.white.withAlpha(209)),
+                    ),
+                    TextButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/register"),
+                        child: const Text(
+                          "Zarejestruj się!",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ))
+                  ],
+                ),
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.28,
+                            vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                    onPressed: () =>
+                        Provider.of<MyProvider>(context, listen: false)
+                            .signIn(context),
+                    child: const Text(
+                      "Zaloguj",
+                      style: TextStyle(color: Colors.black, fontSize: 17),
+                    )),
+              ],
             )
           ],
         ),
