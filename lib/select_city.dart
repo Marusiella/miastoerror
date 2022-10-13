@@ -9,33 +9,44 @@ class SelectCity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: const Color.fromARGB(255, 33, 34, 35),
+      width: double.infinity,
+      height: double.infinity,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          TextButton(
-              onPressed: () => Provider.of<MyProvider>(context, listen: false)
-                  .logOut(context),
-              child: const Text("Logout")),
+          Text(
+            "Wybierz miasto",
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.045,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Roboto",
+                color: Colors.white),
+          ),
           Column(
             children: city
                 .map((e) => TextButton(
-                    onPressed: () =>
-                        Provider.of<MyProvider>(context, listen: false)
-                            .setCity(e),
-                    child: Text(upFirstLetter(e))))
+                    style: TextButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    onPressed: () {
+                      Provider.of<MyProvider>(context, listen: false)
+                          .setCity(e);
+                      Navigator.pushReplacementNamed(context, '/home');
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        upFirstLetter(e),
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.height * 0.03,
+                            fontFamily: "Roboto",
+                            color: Colors.black),
+                      ),
+                    )))
                 .toList(),
           ),
-          TextButton(
-              onPressed: () {
-                if (Provider.of<MyProvider>(context, listen: false).city !=
-                    "") {
-                  Navigator.pushReplacementNamed(context, '/home');
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("Please select a city"),
-                  ));
-                }
-              },
-              child: const Text("Next")),
         ],
       ),
     );

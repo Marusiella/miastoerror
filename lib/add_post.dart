@@ -48,11 +48,6 @@ class _AddPostState extends State<AddPost> {
                 color: Colors.white),
           ),
         ),
-        if (Provider.of<MyProvider>(context).urlImage != "")
-          Image.file(
-            File(Provider.of<MyProvider>(context).urlImage),
-            width: MediaQuery.of(context).size.height * 0.3,
-          ),
         TextButton(
             style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -139,7 +134,12 @@ class _AddPostState extends State<AddPost> {
               padding: EdgeInsets.all(8.0),
               child: Text("Dodaj",
                   style: TextStyle(color: Colors.black, fontSize: 20)),
-            ))
+            )),
+        if (Provider.of<MyProvider>(context).urlImage != "")
+          Image.file(
+            File(Provider.of<MyProvider>(context).urlImage),
+            width: MediaQuery.of(context).size.height * 0.3,
+          ),
       ]),
     );
   }
