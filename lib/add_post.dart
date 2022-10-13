@@ -73,6 +73,7 @@ class _AddPostState extends State<AddPost> {
           child: Column(
             children: [
               TextField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                   helperStyle: TextStyle(color: Colors.white),
                   labelStyle: TextStyle(color: Colors.white),
@@ -93,6 +94,7 @@ class _AddPostState extends State<AddPost> {
               TextField(
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                   // color white of all
                   helperStyle: TextStyle(color: Colors.white),

@@ -44,13 +44,16 @@ class InfoScreen extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
-                        Text(
-                          post.title,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontFamily: "Roboto",
-                              fontWeight: FontWeight.w500),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          child: Text(
+                            post.title,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
