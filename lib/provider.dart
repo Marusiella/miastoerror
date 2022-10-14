@@ -33,6 +33,8 @@ class MyProvider with ChangeNotifier {
   double get longitude => _longitude;
   bool isAdmin = false;
   bool get admin => isAdmin;
+  bool _isLoaded = true;
+  bool get isLoaded => _isLoaded;
   Future<void> getPostNow() async {
     var data = await db
         .collection("posts")
@@ -96,6 +98,8 @@ class MyProvider with ChangeNotifier {
   }
 
   void signIn(BuildContext context) async {
+    _isLoaded = false;
+    notifyListeners();
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: _email.trim(), password: _password)
@@ -104,6 +108,7 @@ class MyProvider with ChangeNotifier {
       });
     } on FirebaseAuthException catch (e) {
       error = e.toString();
+      _isLoaded = true;
       notifyListeners();
       return;
     }
@@ -132,10 +137,13 @@ class MyProvider with ChangeNotifier {
       Navigator.pop(context);
       Navigator.pushReplacementNamed(context, '/home');
     }
+    _isLoaded = true;
     notifyListeners();
   }
 
   void singUp(BuildContext context) async {
+    _isLoaded = false;
+    notifyListeners();
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -145,6 +153,7 @@ class MyProvider with ChangeNotifier {
       });
     } on FirebaseAuthException catch (e) {
       error = e.toString();
+      _isLoaded = true;
       notifyListeners();
       return;
     }
@@ -173,6 +182,7 @@ class MyProvider with ChangeNotifier {
       Navigator.pop(context);
       Navigator.pushReplacementNamed(context, '/home');
     }
+    _isLoaded = true;
     notifyListeners();
   }
 

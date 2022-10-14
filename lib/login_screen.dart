@@ -157,10 +157,20 @@ class _LoginState extends State<Login> {
                     onPressed: () =>
                         Provider.of<MyProvider>(context, listen: false)
                             .signIn(context),
-                    child: const Text(
-                      "Zaloguj",
-                      style: TextStyle(color: Colors.black, fontSize: 17),
-                    )),
+                    child: Provider.of<MyProvider>(context).isLoaded
+                        ? const Text(
+                            "Zaloguj",
+                            style: TextStyle(color: Colors.black, fontSize: 17),
+                          )
+                        : Container(
+                            width: 24,
+                            height: 24,
+                            padding: const EdgeInsets.all(2.0),
+                            child: const CircularProgressIndicator(
+                              color: Colors.black,
+                              strokeWidth: 3,
+                            ),
+                          )),
               ],
             )
           ],

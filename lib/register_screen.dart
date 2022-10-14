@@ -138,10 +138,14 @@ class Register extends StatelessWidget {
                     onPressed: () =>
                         Provider.of<MyProvider>(context, listen: false)
                             .singUp(context),
-                    child: const Text(
-                      "Zarejestruj",
-                      style: TextStyle(color: Colors.black, fontSize: 17),
-                    )),
+                    child: Provider.of<MyProvider>(context).isLoaded
+                        ? const Text(
+                            "Zarejestruj",
+                            style: TextStyle(color: Colors.black, fontSize: 17),
+                          )
+                        : const CircularProgressIndicator(
+                            color: Colors.black,
+                          )),
               ],
             )
           ],
