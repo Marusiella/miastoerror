@@ -88,9 +88,11 @@ class ListHome extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    Provider.of<MyProvider>(context)
-                                        .posts[index]
-                                        .title,
+                                    ifTooLongShort(
+                                        Provider.of<MyProvider>(context)
+                                            .posts[index]
+                                            .title,
+                                        shorter: true),
                                     style: TextStyle(
                                         fontSize: mediaQuery.size.height * 0.03,
                                         fontWeight: FontWeight.bold,
@@ -139,9 +141,13 @@ class ListHome extends StatelessWidget {
   }
 }
 
-String ifTooLongShort(String text) {
-  if (text.length > 100) {
-    return "${text.substring(0, 20)}...";
+String ifTooLongShort(String text, {bool shorter = false}) {
+  if (text.length > 30) {
+    if (shorter) {
+      return text.substring(0, 13) + "...";
+    } else {
+      return text.substring(0, 50) + "...";
+    }
   } else {
     return text;
   }

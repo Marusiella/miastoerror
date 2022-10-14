@@ -278,4 +278,14 @@ class MyProvider with ChangeNotifier {
     getPostNow();
     Navigator.of(context).pop();
   }
+  // void addUpVote() async {
+  //   var data = await db
+  //       .collection("posts")
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .get();
+  //   DbUser user = DbUser.fromFirestore(data.data()!);
+  //   if (user.city != "") {
+  //     var
+  //   }
+  // }
 }
