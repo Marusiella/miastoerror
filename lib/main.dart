@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -34,7 +35,7 @@ void main() async {
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
       await FirebaseFirestore.instance
           .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
-
+      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
       await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
       FirebaseDatabase.instance.useDatabaseEmulator('localhost', 9000);

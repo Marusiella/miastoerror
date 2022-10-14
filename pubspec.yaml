@@ -46,7 +46,7 @@ dependencies:
   firebase_crashlytics: ^2.8.13
   firebase_database: ^9.1.7
   firebase_performance: ^0.8.3+3
-
+  google_sign_in: ^5.4.2
   image_picker: ^0.8.6
   flutter_svg: ^1.1.5
   geolocator: ^9.0.2

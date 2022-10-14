@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:miastoerror/models.dart';
 
 class MyProvider with ChangeNotifier {
@@ -106,6 +107,57 @@ class MyProvider with ChangeNotifier {
           .then((value) {
         _isSignedIn = true;
       });
+    } on FirebaseAuthException catch (e) {
+      error = e.toString();
+      _isLoaded = true;
+      notifyListeners();
+      return;
+    }
+    try {
+      var data = await db
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      DbUser user = DbUser.fromFirestore(data.data()!);
+      if (user.city != "") {
+        _city = user.city;
+        notifyListeners();
+
+        // gettings posts
+        var data =
+            await db.collection("posts").where("city", isEqualTo: _city).get();
+        _posts =
+            data.docs.map((e) => DbPost.fromFirestore(e.data(), e.id)).toList();
+        // addPost("test", "test2", "");
+      }
+    } catch (_) {}
+    if (city == "") {
+      Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, '/choose');
+    } else {
+      Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+    _isLoaded = true;
+    notifyListeners();
+  }
+
+  void signUpGoogle(BuildContext context) async {
+    _isLoaded = false;
+    notifyListeners();
+    try {
+      final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      _isSignedIn = true;
     } on FirebaseAuthException catch (e) {
       error = e.toString();
       _isLoaded = true;
@@ -298,4 +350,5 @@ class MyProvider with ChangeNotifier {
   //     var
   //   }
   // }
+
 }

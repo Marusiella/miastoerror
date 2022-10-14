@@ -126,28 +126,62 @@ class Register extends StatelessWidget {
                         ))
                   ],
                 ),
-                TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.28,
-                            vertical: 20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    onPressed: () =>
-                        Provider.of<MyProvider>(context, listen: false)
-                            .singUp(context),
-                    child: Provider.of<MyProvider>(context).isLoaded
-                        ? const Text(
-                            "Zarejestruj",
-                            style: TextStyle(color: Colors.black, fontSize: 17),
-                          )
-                        : const CircularProgressIndicator(
-                            color: Colors.black,
-                          )),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.28,
+                              vertical: 20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () =>
+                          Provider.of<MyProvider>(context, listen: false)
+                              .singUp(context),
+                      child: Provider.of<MyProvider>(context).isLoaded
+                          ? const Text(
+                              "Zarejestruj",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 17),
+                            )
+                          : const CircularProgressIndicator(
+                              color: Colors.black,
+                            )),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.width * 0.02),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () =>
+                          Provider.of<MyProvider>(context, listen: false)
+                              .signUpGoogle(context),
+                      child: Provider.of<MyProvider>(context).isLoaded
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.network(
+                                    width: 30,
+                                    "https://pngimg.com/uploads/google/google_PNG19635.png"),
+                                const Text(
+                                  "Zarejestruj przez Google",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 17),
+                                ),
+                              ],
+                            )
+                          : const CircularProgressIndicator(
+                              color: Colors.black,
+                            )),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

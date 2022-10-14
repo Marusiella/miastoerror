@@ -128,49 +128,60 @@ class _LoginState extends State<Login> {
             ),
             Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Nie masz konta?",
-                      style: TextStyle(
-                          fontSize: 18, color: Colors.white.withAlpha(209)),
-                    ),
-                    TextButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, "/register"),
-                        child: const Text(
-                          "Zarejestruj się!",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ))
-                  ],
-                ),
-                TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.28,
-                            vertical: 20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    onPressed: () =>
-                        Provider.of<MyProvider>(context, listen: false)
-                            .signIn(context),
-                    child: Provider.of<MyProvider>(context).isLoaded
-                        ? const Text(
-                            "Zaloguj",
-                            style: TextStyle(color: Colors.black, fontSize: 17),
-                          )
-                        : Container(
-                            width: 24,
-                            height: 24,
-                            padding: const EdgeInsets.all(2.0),
-                            child: const CircularProgressIndicator(
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.28,
+                              vertical: 20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () =>
+                          Provider.of<MyProvider>(context, listen: false)
+                              .signIn(context),
+                      child: Provider.of<MyProvider>(context).isLoaded
+                          ? const Text(
+                              "Zaloguj",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 17),
+                            )
+                          : const CircularProgressIndicator(
                               color: Colors.black,
-                              strokeWidth: 3,
-                            ),
-                          )),
+                            )),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.width * 0.02),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () =>
+                          Provider.of<MyProvider>(context, listen: false)
+                              .signUpGoogle(context),
+                      child: Provider.of<MyProvider>(context).isLoaded
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.network(
+                                    width: 30,
+                                    "https://pngimg.com/uploads/google/google_PNG19635.png"),
+                                const Text(
+                                  "Zarejestruj przez Google",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 17),
+                                ),
+                              ],
+                            )
+                          : const CircularProgressIndicator(
+                              color: Colors.black,
+                            )),
+                ),
               ],
             )
           ],
