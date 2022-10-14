@@ -74,6 +74,7 @@ class _AddPostState extends State<AddPost> {
             children: [
               TextField(
                 style: const TextStyle(color: Colors.white),
+                maxLength: 30,
                 decoration: const InputDecoration(
                   helperStyle: TextStyle(color: Colors.white),
                   labelStyle: TextStyle(color: Colors.white),
@@ -92,6 +93,7 @@ class _AddPostState extends State<AddPost> {
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
               TextField(
+                maxLength: 100,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 style: const TextStyle(color: Colors.white),
