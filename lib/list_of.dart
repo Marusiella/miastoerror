@@ -142,11 +142,11 @@ class ListHome extends StatelessWidget {
 }
 
 String ifTooLongShort(String text, {bool shorter = false}) {
-  if (text.length > 30) {
+  if (text.length > 20) {
     if (shorter) {
-      return text.substring(0, 13) + "...";
+      return "${text.substring(0, 13)}...";
     } else {
-      return text.substring(0, 50) + "...";
+      return "${text.substring(0, 45)}...";
     }
   } else {
     return text;

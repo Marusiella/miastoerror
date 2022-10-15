@@ -93,7 +93,7 @@ class _AddPostState extends State<AddPost> {
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
               TextField(
-                maxLength: 100,
+                maxLength: 200,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 style: const TextStyle(color: Colors.white),
