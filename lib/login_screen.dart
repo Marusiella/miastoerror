@@ -128,6 +128,23 @@ class _LoginState extends State<Login> {
             ),
             Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Nie masz jeszcze konta?",
+                      style: TextStyle(
+                          fontSize: 18, color: Colors.white.withAlpha(209)),
+                    ),
+                    TextButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/register"),
+                        child: const Text(
+                          "Załóż je!",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ))
+                  ],
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: TextButton(
@@ -172,7 +189,7 @@ class _LoginState extends State<Login> {
                                     width: 30,
                                     "https://pngimg.com/uploads/google/google_PNG19635.png"),
                                 const Text(
-                                  "Zarejestruj przez Google",
+                                  "Zaloguj przez Google",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 17),
                                 ),

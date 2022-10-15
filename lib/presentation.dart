@@ -27,14 +27,19 @@ class _PresentationState extends State<Presentation> {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(color: Color.fromARGB(255, 33, 34, 35)),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.1,
-          ),
-          SvgPicture.asset(
-            "assets/croped_dog.svg",
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.fitWidth,
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.width * 0.1,
+          // ),
+          Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.1),
+            child: Image.asset(
+              "assets/croped_dog.png",
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.fitWidth,
+            ),
           ),
           Container(
             constraints: BoxConstraints(
@@ -47,9 +52,9 @@ class _PresentationState extends State<Presentation> {
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w500)),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.08,
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.width * 0.08,
+          // ),
           Container(
             constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.8),
@@ -61,9 +66,9 @@ class _PresentationState extends State<Presentation> {
                     fontSize: 16,
                     fontFamily: "Roboto")),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.2,
-          ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.width * 0.2,
+          // ),
           Container(
             constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.8),
