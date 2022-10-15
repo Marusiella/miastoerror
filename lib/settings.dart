@@ -15,14 +15,35 @@ class SettingsScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
+            height: MediaQuery.of(context).size.height * 0.06,
           ),
-          IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: Colors.white,
-              )),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  child: TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Icon(
+                        Icons.chevron_left_sharp,
+                        color: Colors.white,
+                      )),
+                ),
+                const Text("Settings",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto",
+                        color: Colors.white)),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
           TextButton(
               style: TextButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 33, 34, 35),
