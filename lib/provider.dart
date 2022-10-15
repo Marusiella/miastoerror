@@ -340,15 +340,40 @@ class MyProvider with ChangeNotifier {
     getPostNow();
     Navigator.of(context).pop();
   }
-  // void addUpVote() async {
-  //   var data = await db
-  //       .collection("posts")
-  //       .doc(FirebaseAuth.instance.currentUser!.uid)
-  //       .get();
-  //   DbUser user = DbUser.fromFirestore(data.data()!);
-  //   if (user.city != "") {
-  //     var
-  //   }
-  // }
 
+  void addUpVote(String id, BuildContext context) async {
+    var data = await db.collection("posts").doc(id).get();
+    DbPost post = DbPost.fromFirestore(data.data()!, data.id);
+    if (post.upvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
+      post.upvotes.remove(FirebaseAuth.instance.currentUser!.uid);
+    } else {
+      post.upvotes.add(FirebaseAuth.instance.currentUser!.uid);
+      if (post.downvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
+        post.downvotes.remove(FirebaseAuth.instance.currentUser!.uid);
+      }
+    }
+    db.collection("posts").doc(id).set(post.toMap());
+    getPostNow();
+    Navigator.of(context).pop();
+  }
+
+  void addDownVote(String id, BuildContext context) async {
+    var data = await db.collection("posts").doc(id).get();
+    DbPost post = DbPost.fromFirestore(data.data()!, data.id);
+    if (post.downvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
+      post.downvotes.remove(FirebaseAuth.instance.currentUser!.uid);
+    } else {
+      post.downvotes.add(FirebaseAuth.instance.currentUser!.uid);
+      if (post.upvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
+        post.upvotes.remove(FirebaseAuth.instance.currentUser!.uid);
+      }
+    }
+    db.collection("posts").doc(id).set(post.toMap());
+    getPostNow();
+    Navigator.of(context).pop();
+  }
+
+  int calculateScore(DbPost post) {
+    return post.upvotes.length - post.downvotes.length;
+  }
 }

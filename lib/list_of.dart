@@ -112,6 +112,29 @@ class ListHome extends StatelessWidget {
                                           color: Colors.white70),
                                     ),
                                   ),
+                                  Text(
+                                    Provider.of<MyProvider>(context,
+                                            listen: true)
+                                        .calculateScore(Provider.of<MyProvider>(
+                                                context,
+                                                listen: false)
+                                            .posts[index])
+                                        .toString(),
+                                    style: TextStyle(
+                                        color: (Provider.of<MyProvider>(context,
+                                                        listen: false)
+                                                    .calculateScore(
+                                                        Provider.of<MyProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .posts[index]) <=
+                                                0
+                                            ? const Color.fromARGB(
+                                                255, 255, 122, 122)
+                                            : const Color.fromARGB(
+                                                255, 189, 255, 151)),
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ],
                               ),
                             ),

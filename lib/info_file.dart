@@ -79,7 +79,20 @@ class InfoScreen extends StatelessWidget {
                             )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            if (!Provider.of<MyProvider>(context).isAdmin)
+                              TextButton(
+                                  onPressed: () {
+                                    Provider.of<MyProvider>(context,
+                                            listen: false)
+                                        .addUpVote(post.id, context);
+                                  },
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 40,
+                                  )),
                             TextButton(
                                 style: TextButton.styleFrom(
                                     backgroundColor: Colors.white,
@@ -95,6 +108,18 @@ class InfoScreen extends StatelessWidget {
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 20)),
                                 )),
+                            if (!Provider.of<MyProvider>(context).isAdmin)
+                              TextButton(
+                                  onPressed: () {
+                                    Provider.of<MyProvider>(context,
+                                            listen: false)
+                                        .addDownVote(post.id, context);
+                                  },
+                                  child: const Icon(
+                                    Icons.remove,
+                                    color: Colors.white,
+                                    size: 40,
+                                  )),
                             if (Provider.of<MyProvider>(context).isAdmin)
                               TextButton(
                                   style: TextButton.styleFrom(
