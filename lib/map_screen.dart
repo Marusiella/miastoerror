@@ -57,7 +57,8 @@ class _MapScreenState extends State<MapScreen> {
               .forEach((element) {
             if (element.latitude == point.latitude &&
                 element.longitude == point.longitude) {
-              Navigator.pushNamed(context, '/info', arguments: element);
+              Navigator.pushReplacementNamed(context, '/info',
+                  arguments: element);
             }
           });
         },

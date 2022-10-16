@@ -36,6 +36,8 @@ class DbPost {
   final List<String> downvotes; // uid of users
   final double latitude;
   final double longitude;
+  final DateTime date;
+  int score;
 
   DbPost({
     required this.id,
@@ -48,6 +50,8 @@ class DbPost {
     required this.downvotes,
     required this.latitude,
     required this.longitude,
+    required this.date,
+    required this.score,
   });
 
   // write constructor for class from firebase
@@ -69,6 +73,8 @@ class DbPost {
         downvotes: listD,
         latitude: map['latitude'],
         longitude: map['longitude'],
+        date: map['date'].toDate(),
+        score: map['score'],
       );
     } catch (e) {
       print(e);
@@ -84,6 +90,8 @@ class DbPost {
         downvotes: [],
         latitude: 0,
         longitude: 0,
+        date: DateTime.now(),
+        score: 0,
       );
     }
   }
@@ -98,6 +106,8 @@ class DbPost {
       'downvotes': downvotes,
       'latitude': latitude,
       'longitude': longitude,
+      'date': date,
+      'score': score,
     };
   }
 }

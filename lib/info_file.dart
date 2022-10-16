@@ -41,13 +41,12 @@ class InfoScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.85,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 8.0, top: 16, left: 16, right: 16),
                           child: Text(
                             post.title,
+                            textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -99,7 +98,7 @@ class InfoScreen extends StatelessWidget {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10))),
-                                onPressed: () => Navigator.pushNamed(
+                                onPressed: () => Navigator.pushReplacementNamed(
                                     context, "/map",
                                     arguments: [post.latitude, post.longitude]),
                                 child: const Padding(

@@ -7,9 +7,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:miastoerror/main.dart';
 import 'package:miastoerror/models.dart';
 
 class MyProvider with ChangeNotifier {
+  String type = typesOfPosts[0];
+  String get getType => type;
   bool _isSignedIn = false;
   bool get isSignedIn => _isSignedIn;
   String _email = "";
@@ -40,6 +43,7 @@ class MyProvider with ChangeNotifier {
     var data = await db
         .collection("posts")
         .where("city", isEqualTo: _city)
+        .orderBy("score", descending: true)
         .get(const GetOptions(source: Source.server));
 
     _posts =
@@ -265,17 +269,18 @@ class MyProvider with ChangeNotifier {
     var x = FirebaseStorage.instance.ref().child(name).putFile(File(this.url));
     var url = await (await x).ref.getDownloadURL();
     DbPost post = DbPost(
-      id: "",
-      title: title,
-      uidOfImage: url,
-      city: _city,
-      description: description,
-      downvotes: [],
-      upvotes: [],
-      uidOfUser: FirebaseAuth.instance.currentUser!.uid,
-      latitude: latitude,
-      longitude: longitude,
-    );
+        id: "",
+        title: type,
+        uidOfImage: url,
+        city: _city,
+        description: description,
+        downvotes: [],
+        upvotes: [],
+        uidOfUser: FirebaseAuth.instance.currentUser!.uid,
+        latitude: latitude,
+        longitude: longitude,
+        date: DateTime.now(),
+        score: 0);
     db.collection("posts").add(post.toMap());
     await getPostNow();
     notifyListeners();
@@ -347,8 +352,10 @@ class MyProvider with ChangeNotifier {
     DbPost post = DbPost.fromFirestore(data.data()!, data.id);
     if (post.upvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
       post.upvotes.remove(FirebaseAuth.instance.currentUser!.uid);
+      post.score--;
     } else {
       post.upvotes.add(FirebaseAuth.instance.currentUser!.uid);
+      post.score++;
       if (post.downvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
         post.downvotes.remove(FirebaseAuth.instance.currentUser!.uid);
       }
@@ -363,8 +370,10 @@ class MyProvider with ChangeNotifier {
     DbPost post = DbPost.fromFirestore(data.data()!, data.id);
     if (post.downvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
       post.downvotes.remove(FirebaseAuth.instance.currentUser!.uid);
+      post.score++;
     } else {
       post.downvotes.add(FirebaseAuth.instance.currentUser!.uid);
+      post.score--;
       if (post.upvotes.contains(FirebaseAuth.instance.currentUser!.uid)) {
         post.upvotes.remove(FirebaseAuth.instance.currentUser!.uid);
       }
@@ -376,5 +385,10 @@ class MyProvider with ChangeNotifier {
 
   int calculateScore(DbPost post) {
     return post.upvotes.length - post.downvotes.length;
+  }
+
+  void setType(String type) async {
+    this.type = type;
+    notifyListeners();
   }
 }

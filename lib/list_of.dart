@@ -96,6 +96,7 @@ class ListHome extends StatelessWidget {
                                               .posts[index]
                                               .title,
                                           shorter: true),
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize:
                                               mediaQuery.size.height * 0.03,

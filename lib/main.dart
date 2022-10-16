@@ -23,7 +23,12 @@ import 'presentation.dart';
 import 'provider.dart';
 
 const List<String> city = ["niepolomice"];
-
+const List<String> typesOfPosts = [
+  "wandalizm",
+  "uszkodzenie mienia",
+  "brak elementu",
+  "usprawnienie działania"
+];
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

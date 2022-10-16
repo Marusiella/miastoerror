@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:miastoerror/main.dart';
 import 'package:provider/provider.dart';
 
 import 'provider.dart';
@@ -72,22 +73,57 @@ class _AddPostState extends State<AddPost> {
           width: MediaQuery.of(context).size.width * 0.9,
           child: Column(
             children: [
-              TextField(
-                style: const TextStyle(color: Colors.white),
-                maxLength: 30,
-                decoration: const InputDecoration(
-                  helperStyle: TextStyle(color: Colors.white),
-                  labelStyle: TextStyle(color: Colors.white),
-                  hintStyle: TextStyle(color: Colors.white),
-                  errorStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+              // TextField(
+              //   style: const TextStyle(color: Colors.white),
+              //   maxLength: 30,
+              //   decoration: const InputDecoration(
+              //     helperStyle: TextStyle(color: Colors.white),
+              //     labelStyle: TextStyle(color: Colors.white),
+              //     hintStyle: TextStyle(color: Colors.white),
+              //     errorStyle: TextStyle(color: Colors.white),
+              //     border: OutlineInputBorder(
+              //       borderSide: BorderSide(color: Colors.white),
+              //     ),
+              //     labelText: 'Tytuł',
+              //   ),
+              //   onChanged: (value) =>
+              //       Provider.of<MyProvider>(context, listen: false)
+              //           .setTitle(value),
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Kategoria: ",
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.height * 0.03,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto",
+                        color: Colors.white),
                   ),
-                  labelText: 'Tytuł',
-                ),
-                onChanged: (value) =>
-                    Provider.of<MyProvider>(context, listen: false)
-                        .setTitle(value),
+                  DropdownButton(
+                      dropdownColor: const Color.fromARGB(255, 33, 34, 35),
+                      isDense: true,
+                      style: const TextStyle(color: Colors.white),
+                      value: Provider.of<MyProvider>(context).getType,
+                      items: typesOfPosts.map((element) {
+                        return DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: element,
+                            child: Container(
+                              alignment: Alignment.center,
+                              // constraints: BoxConstraints(minHeight: 48.0),
+                              color: const Color.fromARGB(255, 33, 34, 35),
+                              child: Text(
+                                element,
+                              ),
+                            ));
+                      }).toList(),
+                      onChanged: (field) {
+                        Provider.of<MyProvider>(context, listen: false)
+                            .setType(field.toString());
+                      }),
+                ],
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
@@ -123,7 +159,7 @@ class _AddPostState extends State<AddPost> {
             onPressed: () {
               if (Provider.of<MyProvider>(context, listen: false).urlImage !=
                       "" &&
-                  Provider.of<MyProvider>(context, listen: false).title != "" &&
+                  Provider.of<MyProvider>(context, listen: false).type != "" &&
                   Provider.of<MyProvider>(context, listen: false).description !=
                       "") {
                 Provider.of<MyProvider>(context, listen: false).addPost();
