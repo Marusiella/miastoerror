@@ -188,7 +188,7 @@ String ifTooLongShort(String text, {bool shorter = false}) {
     if (shorter) {
       return "${text.substring(0, 13)}...";
     } else {
-      return "${text.substring(0, 45)}...";
+      return "${text.substring(0, 19)}...";
     }
   } else {
     return text;

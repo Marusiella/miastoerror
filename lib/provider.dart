@@ -242,7 +242,8 @@ class MyProvider with ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     _isSignedIn = false;
     // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, '/login');
+    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, '/presentation');
     notifyListeners();
   }
 

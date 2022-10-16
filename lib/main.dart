@@ -30,7 +30,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
-  if (kDebugMode) {
+  if (kDebugMode && !kProfileMode) {
     try {
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
       await FirebaseFirestore.instance
@@ -39,6 +39,7 @@ void main() async {
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
       await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
       FirebaseDatabase.instance.useDatabaseEmulator('localhost', 9000);
+      // ignore: avoid_print
       print(await FirebaseMessaging.instance.getToken());
     } catch (e) {
       // ignore: avoid_print
