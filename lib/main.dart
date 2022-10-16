@@ -8,9 +8,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:miastoerror/list_of.dart';
-import 'package:miastoerror/select_city.dart';
-import 'package:miastoerror/start_screen.dart';
+import 'package:MiastoError/list_of.dart';
+import 'package:MiastoError/select_city.dart';
+import 'package:MiastoError/start_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'add_post.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miastoerror/main.dart';
-import 'package:miastoerror/provider.dart';
+import 'package:MiastoError/main.dart';
+import 'package:MiastoError/provider.dart';
 import 'package:provider/provider.dart';
 
 class SelectCity extends StatelessWidget {

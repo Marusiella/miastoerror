@@ -7,8 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:miastoerror/main.dart';
-import 'package:miastoerror/models.dart';
+import 'package:MiastoError/main.dart';
+import 'package:MiastoError/models.dart';
 
 class MyProvider with ChangeNotifier {
   String type = typesOfPosts[0];

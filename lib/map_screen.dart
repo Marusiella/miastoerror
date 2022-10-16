@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-import 'package:miastoerror/provider.dart';
+import 'package:MiastoError/provider.dart';
 import 'package:provider/provider.dart';
 
 class MapScreen extends StatefulWidget {

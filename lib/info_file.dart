@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miastoerror/models.dart';
-import 'package:miastoerror/provider.dart';
+import 'package:MiastoError/models.dart';
+import 'package:MiastoError/provider.dart';
 import 'package:provider/provider.dart';
 
 class InfoScreen extends StatelessWidget {

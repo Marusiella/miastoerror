@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miastoerror/provider.dart';
-import 'package:miastoerror/select_city.dart';
+import 'package:MiastoError/provider.dart';
+import 'package:MiastoError/select_city.dart';
 import 'package:provider/provider.dart';
 
 class ListHome extends StatelessWidget {
