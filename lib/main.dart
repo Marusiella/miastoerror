@@ -27,7 +27,8 @@ const List<String> typesOfPosts = [
   "wandalizm",
   "uszkodzenie mienia",
   "brak elementu",
-  "usprawnienie działania"
+  "usprawnienie działania",
+  "własny tytuł"
 ];
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +41,9 @@ void main() async {
       FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
       await FirebaseFirestore.instance
           .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
-      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
+      try {
+        await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
+      } catch (_) {}
       await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
       await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
       FirebaseDatabase.instance.useDatabaseEmulator('localhost', 9000);

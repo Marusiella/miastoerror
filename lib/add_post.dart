@@ -90,6 +90,7 @@ class _AddPostState extends State<AddPost> {
               //       Provider.of<MyProvider>(context, listen: false)
               //           .setTitle(value),
               // ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -125,9 +126,28 @@ class _AddPostState extends State<AddPost> {
                       }),
                 ],
               ),
+
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
+              if (Provider.of<MyProvider>(context).showInput)
+                TextField(
+                  style: const TextStyle(color: Colors.white),
+                  maxLength: 20,
+                  decoration: const InputDecoration(
+                    helperStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: Colors.white),
+                    errorStyle: TextStyle(color: Colors.white),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    labelText: 'Tytuł',
+                  ),
+                  onChanged: (value) =>
+                      Provider.of<MyProvider>(context, listen: false)
+                          .setTitle(value),
+                ),
               TextField(
                 maxLength: 200,
                 keyboardType: TextInputType.multiline,

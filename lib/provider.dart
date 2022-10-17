@@ -39,6 +39,13 @@ class MyProvider with ChangeNotifier {
   bool get admin => isAdmin;
   bool _isLoaded = true;
   bool get isLoaded => _isLoaded;
+  bool _showInput = false;
+  bool get showInput => _showInput;
+  void setShowInput(bool value) {
+    _showInput = value;
+    notifyListeners();
+  }
+
   Future<void> getPostNow() async {
     var data = await db
         .collection("posts")
@@ -270,7 +277,7 @@ class MyProvider with ChangeNotifier {
     var url = await (await x).ref.getDownloadURL();
     DbPost post = DbPost(
         id: "",
-        title: type,
+        title: type == "własny tytuł" ? _title : type,
         uidOfImage: url,
         city: _city,
         description: description,
@@ -388,7 +395,12 @@ class MyProvider with ChangeNotifier {
   }
 
   void setType(String type) async {
-    this.type = type;
+    if (type != "własny tytuł") {
+      this.type = type;
+    } else {
+      this.type = "własny tytuł";
+      _showInput = true;
+    }
     notifyListeners();
   }
 }
