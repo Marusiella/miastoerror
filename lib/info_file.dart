@@ -54,6 +54,19 @@ class InfoScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 0, top: 16, left: 16, right: 16),
+                          child: Text(
+                            post.date.toString().substring(0, 10),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
