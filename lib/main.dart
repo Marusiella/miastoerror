@@ -18,6 +18,7 @@ import 'firebase_options.dart';
 import 'fun_fact.dart';
 import 'info_file.dart';
 import 'map_screen.dart';
+import 'models.dart';
 import 'settings.dart';
 import 'login_screen.dart';
 import 'presentation.dart';
@@ -31,13 +32,34 @@ const List<String> typesOfPosts = [
   "usprawnienie działania",
   "własny tytuł"
 ];
-var facts = {
-  "wandalizm": "",
-  "uszkodzenie mienia": "",
-  "brak elementu": "",
-  "usprawnienie działania": "",
-  "własny tytuł": ""
-};
+List<FunFacts> funFacts = [
+  FunFacts(
+      theme: "wandalizm",
+      fact:
+          "Czy wiedziałeś/aś, że wandalizm wywodzi się od nazwy germańskiego plemienia – Wandalów, którym przypisywano barbarzyńskie zniszczenie zdobytego Rzymu.",
+      links: ["https://pl.wikipedia.org/wiki/Wandalizm"]),
+  FunFacts(
+      theme: "uszkodzenie mienia",
+      fact:
+          "Czy wiedziałeś, że osoba która uszkodziła mienie publiczne może być ukarany karą od 3 miesięcy do 5 lat pozbawienia wolności.",
+      links: [
+        "https://statystyka.policja.pl/st/kodeks-karny/przestepstwa-przeciwko-16/63978,Zniszczenie-lub-uszkodzenie-cudzej-rzeczy-art-288.html"
+      ]),
+  FunFacts(
+      theme: "brak elementu",
+      fact:
+          "Czy wiedziałeś/aś, że od stycznia do końca maja 2021 roku, czyli w ostatnie pięć miesięcy przed wprowadzeniem nowych przepisów, na przejściach dla pieszych odnotowano: 732 wypadki. 45 ofiar śmiertelnych. 707 rannych.",
+      links: [
+        "https://motoryzacja.interia.pl/przepisy-drogowe/news-coraz-wiecej-pieszych-ginie-na-przejsciach-a-nowe-prawo-mial,nId,6316112"
+      ]),
+  FunFacts(
+      theme: "usprawnienie działania",
+      fact:
+          "Czy wiedziałeś/aś, że poprzez udzielenie pierwszeństwa przejazdu dla pojazdów transportu publicznego, zredukowanie liczby oszustw, poprawa bezpieczeństwa i komfortu podróżnych, zwiększenie wygody korzystania z transportu publicznego możemy usprawnić transport publiczny?",
+      links: [
+        "https://blog.gunneboentrancecontrol.com/pl/4-sposoby-na-usprawnienie-transportu-publicznego"
+      ]),
+];
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

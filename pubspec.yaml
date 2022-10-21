@@ -51,6 +51,7 @@ dependencies:
   flutter_svg: ^1.1.5
   geolocator: ^9.0.2
   flutter_osm_plugin: ^0.40.3
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_launcher_icons: "^0.10.0"

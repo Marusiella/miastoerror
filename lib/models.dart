@@ -111,3 +111,11 @@ class DbPost {
     };
   }
 }
+
+class FunFacts {
+  final String theme;
+  final String fact;
+  final List<String> links;
+
+  FunFacts({required this.theme, required this.fact, this.links = const []});
+}
