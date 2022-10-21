@@ -37,7 +37,7 @@ class Register extends StatelessWidget {
                   constraints: BoxConstraints(
                       maxWidth: MediaQuery.of(context).size.width * 0.8),
                   child: Text(
-                      "Dzięki tobie nasze miasto może wyglądać lepiej! Poprzez współpracę czynimy lepiej.",
+                      "Dzięki tobie twoja okolica może wyglądać lepiej!",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.white.withAlpha(209),

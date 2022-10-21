@@ -44,7 +44,7 @@ class _PresentationState extends State<Presentation> {
           Container(
             constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.8),
-            child: const Text("Zgłaszaj błędy w swoim mieście.",
+            child: const Text("Zgłaszaj błędy w swojej okolicy.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
@@ -59,7 +59,7 @@ class _PresentationState extends State<Presentation> {
             constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.8),
             child: Text(
-                "Twórz miasto wraz innymi pomagając urzędowi znajdować problemy życia codziennego.",
+                "Twórz swoją okolicę wraz z innymi znajdując problemy życia codziennego.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white.withAlpha(128),
