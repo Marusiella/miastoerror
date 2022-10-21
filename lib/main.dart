@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 import 'add_post.dart';
 import 'firebase_options.dart';
+import 'fun_fact.dart';
 import 'info_file.dart';
 import 'map_screen.dart';
 import 'settings.dart';
@@ -30,6 +31,14 @@ const List<String> typesOfPosts = [
   "usprawnienie działania",
   "własny tytuł"
 ];
+var facts = {
+  "wandalizm": "",
+  "uszkodzenie mienia": "",
+  "brak elementu": "",
+  "usprawnienie działania": "",
+  "własny tytuł": ""
+};
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -73,6 +82,7 @@ void main() async {
         '/settings': (context) => const Scaffold(body: SettingsScreen()),
         '/map': (context) => const Scaffold(body: MapScreen()),
         '/info': (context) => const Scaffold(body: InfoScreen()),
+        '/funfact': (context) => const Scaffold(body: FunFact()),
       },
     ),
   ));

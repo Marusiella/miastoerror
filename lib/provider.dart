@@ -395,11 +395,12 @@ class MyProvider with ChangeNotifier {
   }
 
   void setType(String type) async {
-    if (type != "własny tytuł") {
+    if (type == "własny tytuł") {
+      _showInput = true;
       this.type = type;
     } else {
-      this.type = "własny tytuł";
-      _showInput = true;
+      _showInput = false;
+      this.type = type;
     }
     notifyListeners();
   }

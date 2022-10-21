@@ -38,16 +38,37 @@ class _AddPostState extends State<AddPost> {
       width: MediaQuery.of(context).size.width,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            "Dodawanie zgłoszenia",
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).size.height * 0.045,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Roboto",
-                color: Colors.white),
-          ),
+        Column(
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: SizedBox(
+                // width: MediaQuery.of(context).size.width * 0.,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: MediaQuery.of(context).size.width * 0.1,
+                      child: TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Icon(
+                            Icons.chevron_left_sharp,
+                            color: Colors.white,
+                          )),
+                    ),
+                    const Text("Dodawanie zgłoszenia",
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto",
+                            color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
         TextButton(
             style: TextButton.styleFrom(
@@ -124,6 +145,17 @@ class _AddPostState extends State<AddPost> {
                         Provider.of<MyProvider>(context, listen: false)
                             .setType(field.toString());
                       }),
+                  if (!Provider.of<MyProvider>(context).showInput)
+                    TextButton(
+                        onPressed: () => Navigator.pushNamed(
+                            context, "/funfact",
+                            arguments:
+                                Provider.of<MyProvider>(context, listen: false)
+                                    .getType),
+                        child: const Icon(
+                          Icons.lightbulb_outline,
+                          color: Colors.white,
+                        ))
                 ],
               ),
 
