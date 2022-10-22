@@ -119,7 +119,11 @@ class Register extends StatelessWidget {
                           fontSize: 18, color: Colors.white.withAlpha(209)),
                     ),
                     TextButton(
-                        onPressed: () => Navigator.pushNamed(context, "/login"),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/login");
+                          Provider.of<MyProvider>(context, listen: false)
+                              .error = "";
+                        },
                         child: const Text(
                           "Zaloguj się!",
                           style: TextStyle(fontSize: 18, color: Colors.white),

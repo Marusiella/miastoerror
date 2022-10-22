@@ -137,8 +137,11 @@ class _LoginState extends State<Login> {
                           fontSize: 18, color: Colors.white.withAlpha(209)),
                     ),
                     TextButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, "/register"),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/register");
+                          Provider.of<MyProvider>(context, listen: false)
+                              .error = "";
+                        },
                         child: const Text(
                           "Załóż je!",
                           style: TextStyle(fontSize: 18, color: Colors.white),
