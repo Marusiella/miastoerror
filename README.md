@@ -1,16 +1,18 @@
 # miastoerror
 
-A new Flutter project.
+Aplikacja pozwalająca zgłaszać błędy w mieście.
 
-## Getting Started
+## Instalacja
 
-This project is a starting point for a Flutter application.
+Najnowsza wersja aplickaji jest dostępna pod zakładką [releases](https://github.com/Marusiella/miastoerror/releases)!
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/1.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/2.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/3.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/4.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/5.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/6.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/7.jpg)
+![Screenshot](https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/8.jpg)
