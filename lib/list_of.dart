@@ -55,6 +55,7 @@ class ListHome extends StatelessWidget {
                       Provider.of<MyProvider>(context, listen: false)
                           .getPostNow(),
                   child: ListView.builder(
+                    cacheExtent: 1000,
                     itemCount: Provider.of<MyProvider>(context).posts.length,
                     itemBuilder: (context, index) {
                       return InkWell(

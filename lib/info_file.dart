@@ -14,7 +14,7 @@ class InfoScreen extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.45,
+          height: MediaQuery.of(context).size.height * 0.5,
           child: Image.network(
             post.uidOfImage,
             fit: BoxFit.cover,
@@ -28,7 +28,7 @@ class InfoScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.40,
                 ),
                 Container(
                     height: MediaQuery.of(context).size.height * 0.6,
@@ -43,7 +43,7 @@ class InfoScreen extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              bottom: 8.0, top: 16, left: 16, right: 16),
+                              bottom: 0, top: 16, left: 16, right: 16),
                           child: Text(
                             post.title,
                             textAlign: TextAlign.center,
@@ -56,7 +56,7 @@ class InfoScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              bottom: 0, top: 16, left: 16, right: 16),
+                              bottom: 0, top: 0, left: 16, right: 16),
                           child: Text(
                             post.date.toString().substring(0, 10),
                             textAlign: TextAlign.center,
@@ -68,10 +68,7 @@ class InfoScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.01,
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.27,
                             child: ListView(
                               children: [
                                 Padding(
