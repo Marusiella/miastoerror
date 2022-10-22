@@ -17,3 +17,9 @@ Najnowsza wersja aplickaji jest dostępna pod zakładką [releases](https://gith
 <img src="https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/7.jpg" alt="Screenshot" width="200"/>
 <img src="https://raw.githubusercontent.com/Marusiella/miastoerror/master/screenshots/8.jpg" alt="Screenshot" width="200"/>
 </p>
+
+## Jak zbudować (w razie problemów z plikiem apk)
+```bash
+flutter pub get
+flutter build apk
+```
