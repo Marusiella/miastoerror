@@ -71,7 +71,7 @@ class InfoScreen extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.3,
                             child: ListView(
                               children: [
                                 Padding(

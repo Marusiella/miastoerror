@@ -82,6 +82,7 @@ class _LoginState extends State<Login> {
                                         ? Provider.of<MyProvider>(context,
                                                 listen: false)
                                             .error
+                                            .split("]")[1]
                                         : null
                                 // input color white
                                 ),
@@ -111,6 +112,7 @@ class _LoginState extends State<Login> {
                                         ? Provider.of<MyProvider>(context,
                                                 listen: false)
                                             .error
+                                            .split("]")[1]
                                         : null
                                 // input color white
                                 ),

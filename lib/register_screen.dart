@@ -68,6 +68,7 @@ class Register extends StatelessWidget {
                                     ? Provider.of<MyProvider>(context,
                                             listen: false)
                                         .error
+                                        .split("]")[1]
                                     : null
                             // input color white
                             ),
@@ -96,6 +97,7 @@ class Register extends StatelessWidget {
                                     ? Provider.of<MyProvider>(context,
                                             listen: false)
                                         .error
+                                        .split("]")[1]
                                     : null
                             // input color white
                             ),
